@@ -2,6 +2,7 @@ import Footer from "@/components/footer";
 import PropertyCardKontekstual, {
   type PropertyData,
 } from "@/components/property/property-card-kontekstual";
+import SearchBarFiltering from "@/components/SearchBarFiltering";
 
 const mockProperty: PropertyData = {
   id: "prop-001",
@@ -31,7 +32,8 @@ const mockProperty: PropertyData = {
 export default function Home() {
   return (
     <div className="flex min-h-screen flex-col bg-zinc-50 font-sans">
-      <main className="flex flex-1 flex-col items-center justify-center gap-8 px-4 py-12">
+      <main className="flex flex-1 flex-col items-center justify-center gap-12 px-4 py-20 bg-gradient-to-b from-blue-50/50 to-white">
+        <SearchBarFiltering />
         <PropertyCardKontekstual data={mockProperty} activeImageIndex={0} />
       </main>
       <Footer />
