@@ -1,8 +1,12 @@
 import Footer from "@/components/footer";
+import PropertyCard from "@/components/property-card";
+import PropertiCardTerstruktur from "@/components/properti-card-terstruktur";
 import PropertyCardKontekstual, {
   type PropertyData,
+  formatPropertyPriceIdr,
 } from "@/components/property/property-card-kontekstual";
 import SearchBarFiltering from "@/components/SearchBarFiltering";
+import SearchBarFilteringTerstruktur from "@/components/SearchBarFiltering-terstruktur";
 
 const mockProperty: PropertyData = {
   id: "prop-001",
@@ -29,11 +33,37 @@ const mockProperty: PropertyData = {
   installmentBadges: ["X Jt/bln (X th)", "X Jt/bln (X th)"],
 };
 
+/** Data sama untuk PropertyCard & PropertiCardTerstruktur (uncomment di bawah untuk melihat). */
+const mockFlatCardProps = {
+  imageSrc: mockProperty.imageSrc,
+  imageAlt: mockProperty.title,
+  priceLabel: formatPropertyPriceIdr(mockProperty.price),
+  installmentBadges: mockProperty.installmentBadges,
+  title: mockProperty.title,
+  location: `${mockProperty.location.city}, ${mockProperty.location.district}`,
+  landArea: mockProperty.facilities.landArea,
+  buildingArea: mockProperty.facilities.buildingArea,
+  bedrooms: String(mockProperty.facilities.bed),
+  bathrooms: String(mockProperty.facilities.bath),
+};
+
 export default function Home() {
   return (
     <div className="flex min-h-screen flex-col bg-zinc-50 font-sans">
       <main className="flex flex-1 flex-col items-center justify-center gap-12 px-4 py-20 bg-gradient-to-b from-blue-50/50 to-white">
-        <SearchBarFiltering />
+        {/* --- Search bar: versi sebelumnya — uncomment untuk melihat --- */}
+        {/* <SearchBarFiltering /> */}
+
+        {/* --- Search bar: versi terstruktur (aktif) --- */}
+        <SearchBarFilteringTerstruktur />
+
+        {/* --- Kartu properti: PropertyCard (versi awal) — uncomment untuk melihat --- */}
+        {/* <PropertyCard {...mockFlatCardProps} /> */}
+
+        {/* --- Kartu properti: PropertiCardTerstruktur — uncomment untuk melihat --- */}
+        {/* <PropertiCardTerstruktur {...mockFlatCardProps} totalImages={5} activeImageIndex={0} /> */}
+
+        {/* --- Kartu properti: PropertyCardKontekstual (aktif) --- */}
         <PropertyCardKontekstual data={mockProperty} activeImageIndex={0} />
       </main>
       <Footer />
