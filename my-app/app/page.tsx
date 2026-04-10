@@ -1,4 +1,5 @@
 import Footer from "@/components/footer";
+import Navbar from "@/components/navbar";
 import PropertyCard from "@/components/property-card";
 import PropertiCardTerstruktur from "@/components/properti-card-terstruktur";
 import PropertyCardKontekstual, {
@@ -51,6 +52,7 @@ const mockFlatCardProps = {
 export default function Home() {
   return (
     <div className="flex min-h-screen flex-col bg-zinc-50 font-sans">
+      <Navbar />
       <main className="flex flex-1 flex-col items-center justify-center gap-12 px-4 py-20 bg-gradient-to-b from-blue-50/50 to-white">
         {/* --- Search bar: versi sebelumnya — uncomment untuk melihat --- */}
         {/* <SearchBarFiltering /> */}
