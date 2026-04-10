@@ -15,8 +15,15 @@ const poppins = Poppins({
 
 const ICON_SIZE = 20;
 
-export default function NavbarKontekstual() {
+type NavbarKontekstualProps = {
+  transparentOnTop?: boolean;
+};
+
+export default function NavbarKontekstual({
+  transparentOnTop = false,
+}: NavbarKontekstualProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isAtTop, setIsAtTop] = useState(true);
   const menuRootRef = useRef<HTMLDivElement>(null);
 
   const closeMenu = useCallback(() => setMenuOpen(false), []);
@@ -29,6 +36,17 @@ export default function NavbarKontekstual() {
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [menuOpen, closeMenu]);
+
+  useEffect(() => {
+    if (!transparentOnTop) {
+      setIsAtTop(false);
+      return;
+    }
+    const onScroll = () => setIsAtTop(window.scrollY <= 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [transparentOnTop]);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -44,42 +62,46 @@ export default function NavbarKontekstual() {
     'inline-flex items-center gap-2 transition-all duration-200 ease-in-out hover:opacity-80';
   /** Poppins semibold 16px untuk label menu */
   const menuText = 'text-base font-semibold leading-normal';
+  const isTransparentState = transparentOnTop && isAtTop && !menuOpen;
+  const menuTextColor = isTransparentState ? "text-white" : "text-[#1E293B]";
+  const ctaColor = isTransparentState ? "text-white" : "text-[#1957A0]";
+  const iconNeutralColor = isTransparentState ? "text-white" : "text-[#64748B]";
 
   const hamburgerBtnClass =
-    'flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#F3F4F6] text-[#1F2937] transition-all duration-200 ease-in-out hover:bg-[#E5E7EB] active:scale-[0.98]';
+    "flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-all duration-200 ease-in-out active:scale-[0.98]";
 
   const mobileLinks = (
     <div className="flex flex-col gap-3">
       <Link
         href="/pasang-iklan"
-        className={`${linkBase} ${menuText} text-[#1957A0]`}
+        className={`${linkBase} ${menuText} ${ctaColor}`}
         onClick={closeMenu}
       >
         <Megaphone
           size={ICON_SIZE}
           strokeWidth={2}
-          className="shrink-0 text-[#1957A0]"
+          className={`shrink-0 ${ctaColor}`}
           aria-hidden
         />
         Pasang Iklan Sekarang
       </Link>
       <Link
         href="/artikel"
-        className={`${linkBase} ${menuText} text-[#1E293B]`}
+        className={`${linkBase} ${menuText} ${menuTextColor}`}
         onClick={closeMenu}
       >
-        <MdBook className="h-5 w-5 shrink-0 text-[#1F2937]" aria-hidden />
+        <MdBook className={`h-5 w-5 shrink-0 ${menuTextColor}`} aria-hidden />
         Artikel
       </Link>
       <Link
         href="/favorit"
-        className={`${linkBase} ${menuText} text-[#1E293B]`}
+        className={`${linkBase} ${menuText} ${menuTextColor}`}
         onClick={closeMenu}
       >
         <Heart
           size={ICON_SIZE}
           strokeWidth={2}
-          className="shrink-0 text-[#64748B]"
+          className={`shrink-0 ${iconNeutralColor}`}
           aria-hidden
         />
         Favorit
@@ -89,7 +111,13 @@ export default function NavbarKontekstual() {
 
   return (
     <header
-      className={`${poppins.className} sticky top-0 z-50 w-full border-b border-[#E5E7EB] bg-white shadow-[0px_1px_3px_rgba(0,0,0,0.08)]`}
+      className={`${poppins.className} z-50 w-full transition-all duration-300 ${
+        transparentOnTop ? "fixed left-0 top-0" : "sticky top-0"
+      } ${
+        isTransparentState
+          ? "border-b border-transparent bg-transparent shadow-none"
+          : "border-b border-[#E5E7EB] bg-white shadow-[0px_1px_3px_rgba(0,0,0,0.08)]"
+      }`}
     >
       <div ref={menuRootRef} className="w-full">
         <div className="flex w-full items-center justify-between gap-4 px-5 py-4 sm:px-6 sm:py-4 md:px-8 md:py-5 lg:px-10">
@@ -102,11 +130,15 @@ export default function NavbarKontekstual() {
             {/* width/height intrinsik untuk ratio; tampilan diatur lebar/tinggi via className.
                 unoptimized: hindari kegagalan pipeline Sharp/Turbopack pada PNG lokal (kotak pink). */}
             <Image
-              src="/images/logo.png"
+              src={
+                isTransparentState
+                  ? "/images/seerumah-light.webp"
+                  : "/images/logo.png"
+              }
               alt="Seerumah"
               width={320}
               height={80}
-              className="h-10 w-auto max-h-12 max-w-[min(260px,calc(100vw-8rem))] object-contain object-left sm:h-12"
+              className="h-10 w-auto max-h-12 max-w-[min(260px,calc(100vw-8rem))] object-contain object-left transition sm:h-12"
               priority
               unoptimized
             />
@@ -119,12 +151,12 @@ export default function NavbarKontekstual() {
             >
               <Link
                 href="/pasang-iklan"
-                className={`${linkBase} ${menuText} text-[#1957A0]`}
+                className={`${linkBase} ${menuText} ${ctaColor}`}
               >
                 <Megaphone
                   size={ICON_SIZE}
                   strokeWidth={2}
-                  className="shrink-0 text-[#1957A0]"
+                  className={`shrink-0 ${ctaColor}`}
                   aria-hidden
                 />
                 <span className="whitespace-nowrap">Pasang Iklan Sekarang</span>
@@ -132,20 +164,20 @@ export default function NavbarKontekstual() {
 
               <Link
                 href="/artikel"
-                className={`${linkBase} ${menuText} text-[#1E293B]`}
+                className={`${linkBase} ${menuText} ${menuTextColor}`}
               >
-                <MdBook className="h-5 w-5 shrink-0 text-[#1F2937]" aria-hidden />
+                <MdBook className={`h-5 w-5 shrink-0 ${menuTextColor}`} aria-hidden />
                 <span className="whitespace-nowrap">Artikel</span>
               </Link>
 
               <Link
                 href="/favorit"
-                className={`${linkBase} ${menuText} text-[#1E293B]`}
+                className={`${linkBase} ${menuText} ${menuTextColor}`}
               >
                 <Heart
                   size={ICON_SIZE}
                   strokeWidth={2}
-                  className="shrink-0 text-[#64748B]"
+                  className={`shrink-0 ${iconNeutralColor}`}
                   aria-hidden
                 />
                 <span className="whitespace-nowrap">Favorit</span>
@@ -153,7 +185,11 @@ export default function NavbarKontekstual() {
 
               <button
                 type="button"
-                className={`${hamburgerBtnClass} hidden md:flex`}
+                className={`${hamburgerBtnClass} hidden md:flex ${
+                  isTransparentState
+                    ? "bg-white/20 text-white hover:bg-white/30"
+                    : "bg-[#F3F4F6] text-[#1F2937] hover:bg-[#E5E7EB]"
+                }`}
                 aria-label="Menu"
               >
                 <Menu size={ICON_SIZE} strokeWidth={2} aria-hidden />
@@ -162,7 +198,11 @@ export default function NavbarKontekstual() {
 
             <button
               type="button"
-              className={`${hamburgerBtnClass} md:hidden`}
+              className={`${hamburgerBtnClass} md:hidden ${
+                isTransparentState
+                  ? "bg-white/20 text-white hover:bg-white/30"
+                  : "bg-[#F3F4F6] text-[#1F2937] hover:bg-[#E5E7EB]"
+              }`}
               aria-label={menuOpen ? 'Tutup menu' : 'Buka menu'}
               aria-expanded={menuOpen}
               aria-haspopup="true"
