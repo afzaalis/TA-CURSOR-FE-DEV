@@ -1,7 +1,8 @@
 import Footer from "@/components/footer";
 import HomepageSederhana from "@/components/homepage-sederhana";
-import HomepageTerstruktur from "@/components/homepage-terstruktur";
+import HomepageKontekstual from "@/components/homepage-kontekstual";
 import NavbarKontekstual from "@/components/navbar-kontekstual";
+import HomepageTerstruktur from "@/components/homepage-terstruktur";
 
 export default function Home() {
   return (
@@ -12,8 +13,9 @@ export default function Home() {
       {/* Homepage sederhana */}
       {/* <HomepageSederhana /> */}
 
-      {/* Homepage terstruktur (aktif) */}
-      <HomepageTerstruktur />
+      {/* Homepage kontekstual — varian prompt Figma (aktif) */}
+      <HomepageKontekstual />
+      {/* <HomepageTerstruktur/> */}
       <Footer />
     </div>
   );
