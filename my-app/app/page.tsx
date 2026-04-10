@@ -9,6 +9,8 @@ import PropertyCardKontekstual, {
 import SearchBarFiltering from "@/components/SearchBarFiltering";
 import SearchBarFilteringKontekstual from "@/components/SearchBarFiltering-kontekstual";
 import SearchBarFilteringTerstruktur from "@/components/SearchBarFiltering-terstruktur";
+import NavbarTerstruktur from "@/components/navbar-terstruktur";
+
 
 const mockProperty: PropertyData = {
   id: "prop-001",
@@ -52,7 +54,9 @@ const mockFlatCardProps = {
 export default function Home() {
   return (
     <div className="flex min-h-screen flex-col bg-zinc-50 font-sans">
-      <Navbar />
+      {/* <Navbar /> */}
+      <NavbarTerstruktur />
+
       <main className="flex flex-1 flex-col items-center justify-center gap-12 px-4 py-20 bg-gradient-to-b from-blue-50/50 to-white">
         {/* --- Search bar: versi sebelumnya — uncomment untuk melihat --- */}
         {/* <SearchBarFiltering /> */}
