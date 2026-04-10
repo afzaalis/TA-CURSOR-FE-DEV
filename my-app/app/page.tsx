@@ -6,6 +6,7 @@ import PropertyCardKontekstual, {
   formatPropertyPriceIdr,
 } from "@/components/property/property-card-kontekstual";
 import SearchBarFiltering from "@/components/SearchBarFiltering";
+import SearchBarFilteringKontekstual from "@/components/SearchBarFiltering-kontekstual";
 import SearchBarFilteringTerstruktur from "@/components/SearchBarFiltering-terstruktur";
 
 const mockProperty: PropertyData = {
@@ -54,8 +55,11 @@ export default function Home() {
         {/* --- Search bar: versi sebelumnya — uncomment untuk melihat --- */}
         {/* <SearchBarFiltering /> */}
 
-        {/* --- Search bar: versi terstruktur (aktif) --- */}
-        <SearchBarFilteringTerstruktur />
+        {/* --- Search bar: versi kontekstual (aktif; props onSearch / onModeChange opsional) --- */}
+        <SearchBarFilteringKontekstual />
+
+        {/* --- Search bar: versi terstruktur — uncomment import + baris di atas untuk bandingkan --- */}
+        {/* <SearchBarFilteringTerstruktur /> */}
 
         {/* --- Kartu properti: PropertyCard (versi awal) — uncomment untuk melihat --- */}
         {/* <PropertyCard {...mockFlatCardProps} /> */}
