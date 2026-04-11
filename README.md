@@ -9,6 +9,9 @@ Penelitian ini berfokus pada perbandingan **tiga jenis prompt**:
 
 ---
 
+## Branch Total : 16
+setiap branch menggandung hasil output yang di hasilkan oleh generative AI cursor dengan prompt dan komponen yang berbeda
+
 ## 🎯 Tujuan Penelitian
 
 Menganalisis bagaimana tingkat detail dan konteks dalam prompt mempengaruhi:
