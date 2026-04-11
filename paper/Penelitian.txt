@@ -1,1785 +1,0 @@
-Analisis Prompt Engineering dalam Pengembangan frontend Website Properti "Seerumah" Menggunakan Model AI Generatif (Cursor AI)
-
-Proposal Tugas Akhir
-
-
-Kelas MK Penulisan Proposal (CCH4A3) 1302220104
-Afzaal Isnaufal
-
-
-
-
-
-
-Program Studi Sarjana Rekayasa Perangkat Lunak Fakultas Informatika
-Universitas Telkom Bandung
-2025
-
-Lembar Persetujuan
-
-Analisis Prompt Engineering dalam Pengembangan frontend Website Properti "Seerumah" Menggunakan Model AI Generatif (Cursor AI)
-
-Analysis of Prompt Engineering in the Frontend Development of the 'Seerumah' Property Website Using a Generative AI Model (Cursor AI)
-
-NIM :1302220104
-Afzaal Isnaufal
-
-
-Proposal ini diajukan sebagai usulan pembuatan tugas akhir pada Program Studi Sarjana Rekayasa Perangkat Lunak
-Fakultas Informatika Universitas Telkom
-
-
-
-
-Bandung, 30 November 2025 Menyetujui
-
-
-
-Calon Pembimbing 1Calon Pembimbing 2
-
-Assoc. Prof. Dana Sulistyo
-Kusumo, S.T., M.T., Ph.D.Villy Satria Pradhita, S.
-Kom., M.Kom0278001119920025
-ABSTRAK
-
-
-Dalam ekosistem startup yang menuntut kecepatan, pengembangan Minimum Viable Product (MVP) sering kali terkendala oleh keterbatasan sumber daya teknis dan waktu. Pemanfaatan Artificial Intelligence (AI) generatif, khususnya alat context-aware seperti Cursor AI, menjadi solusi potensial untuk mengakselerasi proses frontend development. Namun, tantangan utama muncul dalam menjaga konsistensi kualitas kode dan akurasi visual yang sangat bergantung pada teknik penyusunan instruksi (prompt engineering). Penelitian ini bertujuan untuk menganalisis efektivitas variasi prompt terhadap optimalisasi alur kerja pengembangan website pada studi kasus startup properti "Seerumah".
-
-Penelitian menggunakan metode eksperimen komparatif dengan menerapkan tiga jenis prompt: sederhana, terstruktur, dan kontekstual. Setiap prompt diuji untuk menghasilkan komponen antarmuka berbasis Next.js dan Tailwind CSS yang mengacu pada standar desain Figma. Evaluasi dilakukan secara komprehensif meliputi tiga dimensi: akurasi visual (pixel-perfect), kualitas struktur kode (best practice & maintainability), serta efisiensi pengembangan yang diukur dari jumlah iterasi revisi. Analisis data dilakukan menggunakan pendekatan deskriptif kuantitatif (quantitizing) dengan sistem pembobotan skor untuk menentukan tingkat efektivitas setiap variabel.
-
-Hasil penelitian ini diharapkan dapat merumuskan karakteristik prompt yang paling optimal yang tidak hanya mempercepat proses coding, tetapi juga meminimalkan utang teknis (technical debt). Temuan ini berkontribusi sebagai panduan praktis bagi pengembang di lingkungan startup untuk memanfaatkan AI generatif secara strategis dalam menyeimbangkan kecepatan rilis produk dan standar kualitas perangkat lunak.
-
-Kata kunci: Prompt Engineering, Pengembangan Startup, Frontend Development, Cursor AI, Minimum Viable Product (MVP), Developer Experience.
-
-DAFTAR ISI
-
-Lembar Persetujuan	1
-ABSTRAK	2
-DAFTAR ISI	3
-BAB                                I PENDAHULUAN	8
-1.1. Latar Belakang	8
-1.2. Batasan Masalah	10
-1.3. Perumusan Masalah	11
-1.4. Tujuan	12
-1.5. Rencana Kegiatan	12
-1.6. Jadwal Kegiatan	13
-BAB II
-KAJIAN PUSTAKA	15
-2.1 Kajian Penelitian Terdahulu	15
-2.1.1 Penggunaan AI Generatif dalam Software Development	15
-2.1.2 Pengaruh Prompt terhadap Kualitas Kode frontend	15
-2.1.3 Konversi Desain UI/UX menjadi Kode frontend	15
-2.1.4 Pembangkitan UI Berbasis Intent dan Deskripsi	15
-2.1.5 Evaluasi Kualitas Kode yang Dihasilkan AI	16
-2.1.6 AI-Assisted Coding dengan Context-Aware System	16
-2.1.7 Karakteristik Pengembangan Software di Startup	16
-2.1.8 Metodologi Kuantifikasi Data Kualitatif	16
-2.1.9 Evaluasi Fungsionalitas Kode AI	17
-2.1.10 Evaluasi User Experience pada AI Coding Tools	17
-2.1.11 Prompt Patterns dalam Prompt Engineering	17
-2.2 Keterkaitan Penelitian Terdahulu dengan Penelitian Ini	18
-2.3 Teori Pendukung	18
-2.3.1 Artificial Intelligence Generatif	19
-2.3.2 Prompt Engineering	19
-2.3.3 Frontend Development (React, Next.js, Tailwind CSS)	20
-2.3.4 Evaluasi Struktur Kode	21
-2.3.5 Pengembangan Perangkat Lunak pada Startup	21
-BAB III
-METODOLOGI PENELITIAN	23
-3.1 Alur Penelitian	23
-3.1.1 Studi Literatur	25
-3.1.2 Penerimaan Desain dari Tim UI/UX	25
-3.1.3 Analisis Desain Figma	25
-3.1.4 Setup Environment Pengembangan	25
-3.1.5 Perancangan Variasi Prompt	25
-3.1.6 Implementasi dengan Cursor AI Pro	25
-3.1.7 Pengumpulan Hasil Kode	25
-3.1.8 Evaluasi Kesesuaian Visual dengan Desain UI/UX	26
-3.1.9 Evaluasi Struktur Kode dengan Best Practice	26
-3.1.10 Analisis Komparatif	26
-3.1.11 Kesimpulan dan Rekomendasi	26
-3.2 Desain Penelitian	26
-3.2.1 Konteks Penelitian	26
-3.2.2 Objek Penelitian	27
-3.2.3 Komponen yang Diuji	28
-3.3 Perancangan Variasi Prompt	60
-3.3.1 Prompt Sederhana	60
-3.3.2 Prompt Terstruktur	61
-3.3.3 Prompt Kontekstual	61
-3.4 Proses Implementasi	64
-3.4.1 Workflow frontend Developer dengan AI	64
-3.4.2 Tahapan Implementasi per Komponen	64
-3.4.3 Pengaturan Cursor AI Pro	65
-3.4.4 Skenario Implementasi	65
-3.5 Metode Evaluasi	66
-3.5.1 Evaluasi Kesesuaian Visual dengan Desain UI/UX	66
-3.5.2 Evaluasi Struktur Kode dengan Best Practice	67
-3.6 Metode Analisis Komparatif	68
-3.6.1 Framework Analisis	68
-3.6.2 Analisis Kualitatif	69
-3.6.3 Matriks Komparasi Final	71
-3.6.4 Analisis Trade-off	74
-3.7 Tools dan Environment	74
-3.7.1 Development Environment	74
-3.7.2 Design Tools	75
-3.7.3 Code Quality & Testing Tools	76
-3.7.4 Tech Stack Proyek Seerumah	77
-3.7.5 Documentation Tools	78
-3.8 Dokumentasi dan Pelaporan	79
-BAB IV
-HASIL DAN PEMBAHASAN	81
-4.1 Pelaksanaan Penelitian	81
-4.2 Setup Environment Pengembangan	81
-4.2.1 Inisialisasi Proyek	81
-4.2.2 Konfigurasi Version Control	82
-4.2.3 Setup Cursor AI Pro	82
-4.2.4 Setup Cursor AI Pro	84
-DAFTAR PUSTAKA	87
-LAMPIRAN	89
-
-
-DAFTAR GAMBAR
-[Gambar 3.1: Flowchart Alur Penelitian]	24
-[Gambar 3.2: Flowchart Alur Penelitian]	27
-[Gambar 3.3: Desain Figma - Properti List Card]	28
-[Gambar 3.4: Desain Figma - Searchbar Filter Component]	33
-[Gambar 3.5: Desain Figma - Navbar]	38
-[Gambar 3.6: Desain Figma - Home Page (Halaman Utama)]	45
-[Gambar 3.7: Desain Figma - Property Detail Page]	51
-[Gambar 3.8: Prompt Sederhana]	61
-[Gambar 3.11: Workflow Developer dengan Cursor AI]	64
-[Gambar 3.12: Flowchart Implementasi per Komponen]	65
-[Gambar 3.13: Framework Analisis Komparatif]	69
-
-DAFTAR TABEL
-Tabel 1.1: Jadwal Kegiatan	13
-Tabel 3.1: Spesifikasi Container dan Layout Property Card	29
-Tabel 3.2: Spesifikasi Typography Property Card	29
-Tabel 3.3: Spesifikasi Colors Property Card	30
-Tabel 3.4: Spesifikasi Spacing Property Card	31
-Tabel 3.5: Spesifikasi Image dan Effects Property Card	32
-Tabel 3.6: Spesifikasi Searchbar Filter Component	34
-Tabel 3.7: Spesifikasi Typography Searchbar Filter Component	34
-Tabel 3.8: Spesifikasi Colors Searchbar Filter Component	35
-Tabel 3.9: Spesifikasi Spacing Searchbar Filter Component	35
-Tabel 3.10: Spesifikasi Image dan Effects Searchbar Filter Component	37
-Tabel 3.11: Spesifikasi Container dan Layout Navigation Bar	38
-Tabel 3.12: Spesifikasi Typography Navigation Bar	39
-Tabel 3.13: Spesifikasi Colors Navigation Bar	39
-Tabel 3.14:Spesifikasi Spacing Navigation Bar	40
-Tabel 3.15: Spesifikasi Elements dan Effects Navigation Bar	41
-Tabel 3.16: Spesifikasi Container dan Layout HomePage Hero Section	46
-Tabel 3.17: Spesifikasi Typography HomePage Hero Section	46
-Tabel 3.18: Spesifikasi Colors HomePage Hero Section	47
-Tabel 3.19: Spesifikasi Spacing HomePage Hero Section	48
-Tabel 3.20: Spesifikasi Elements dan Effects HomePage Hero Section	48
-Tabel 3.21: Spesifikasi Container dan Layout Property Detail Page	52
-Tabel 3.22: Spesifikasi Typography Property Detail Page	54
-Tabel 3.23: Spesifikasi Colors Property Detail Page	55
-Tabel 3.24: Spesifikasi Spacing Property Detail Page	56
-Tabel 3.25: Spesifikasi Elements dan Effects Property Detail Page	58
-Tabel 3.26: Aspek Evaluasi Kesesuaian Visual	66
-Tabel 3.27: Aspek Evaluasi Struktur Kode	67
-Tabel 3.28: Template Tabel Perbandingan per Komponen	69
-Tabel 3.29: Matriks Komparasi Final	72
-Tabel 3.30: Tabel Development Environment	74
-Tabel 3.31: Tabel Design tools	75
-Tabel 3.32: Tabel Code Quality & Testing Tools	76
-Tabel 3.33: Tabel Tech Stack Proyek Seerumah	77
-Tabel 3.34: Tabel Documentation Tools	78
-
-BAB I PENDAHULUAN
-
-1.1. Latar Belakang
-
-Perkembangan teknologi Artificial Intelligence (AI), khususnya AI generatif, semakin memberikan pengaruh signifikan dalam proses pengembangan perangkat lunak modern. Berbagai penelitian menunjukkan bahwa AI generatif mampu membantu penulisan kode, mempercepat pembuatan fitur, dan meningkatkan produktivitas pengembang dalam berbagai tahap pengembangan perangkat lunak [1]. Dalam konteks pengembangan frontend, model AI dapat menghasilkan komponen antarmuka dan struktur halaman melalui instruksi berbasis teks atau prompt, sehingga proses implementasi dapat dilakukan lebih cepat dibandingkan pendekatan manual [2].
-
-Salah satu platform yang memanfaatkan kemampuan AI generatif dalam lingkungan pengembangan adalah Cursor AI, sebuah AI-assisted coding tool yang mengintegrasikan Large Language Models (LLM) ke dalam proses penulisan dan analisis kode. Cursor AI Pro menyediakan pemahaman konteks proyek yang lebih mendalam, akses ke berbagai model AI tingkat lanjut melalui mode auto, serta kemampuan analisis multi-berkas. Mode auto pada Cursor AI Pro memungkinkan platform untuk secara otomatis memilih model AI yang paling sesuai dari berbagai pilihan seperti Composer 1, Opus 4.5, Claude Sonnet 4.5, GPT 5.1 Codex Max, GPT 5.1, Gemini 3 Pro, GPT-5.1 Codex Mini, hingga Grok Code berdasarkan kompleksitas task yang diberikan. Platform ini dapat membaca struktur folder, memahami dependensi, serta memberikan rekomendasi dan perbaikan kode yang bersifat menyeluruh. Kemampuan tersebut sejalan dengan temuan penelitian mengenai context-aware code generation pada model generatif yang mampu menyesuaikan respons berdasarkan struktur proyek secara keseluruhan [6].
-
-Cursor AI Pro dipilih sebagai objek penelitian karena beberapa alasan. Pertama, platform ini menawarkan kemampuan context-aware yang memungkinkan AI memahami struktur proyek secara menyeluruh, tidak hanya file tunggal [6]. Kedua, fitur mode auto memungkinkan penelitian untuk mengevaluasi hasil AI generatif secara lebih general, tidak terbatas pada satu model spesifik. Ketiga, platform ini dirancang khusus untuk workflow developer profesional dengan fitur seperti multi-file editing dan codebase indexing yang relevan untuk proyek production-level. Keempat, Cursor AI Pro telah banyak diadopsi dalam industri startup untuk mempercepat pengembangan, sehingga hasil penelitian ini memiliki relevansi praktis yang tinggi untuk konteks Seerumah.
-
-Namun, kualitas kode program yang dihasilkan model AI sangat dipengaruhi oleh kualitas instruksi yang diberikan [2], [5]. Teknik penyusunan instruksi atau prompt engineering menjadi faktor penting dalam memperoleh hasil yang akurat dan sesuai kebutuhan [3], [4]. Dalam perkembangannya, prompt engineering tidak hanya dipandang sebagai sekadar penyusunan instruksi, tetapi juga sebagai pendekatan berbasis pola (prompt patterns) dalam penyusunan prompt yang memungkinkan proses perancangan dilakukan secara lebih sistematis dan terstruktur [11]. Prompt patterns merujuk pada pola atau struktur umum dalam penyusunan prompt yang dapat digunakan secara berulang untuk menghasilkan output yang lebih konsisten dan terarah. Penelitian sebelumnya menunjukkan bahwa variasi detail dalam prompt dapat menghasilkan kode program yang berbeda, baik dari segi struktur, gaya penulisan, maupun ketepatan implementasi antarmuka [3], [4], [5]. Prompt yang jelas, kontekstual, dan terarah terbukti berperan besar dalam menghasilkan kode yang dapat diterapkan pada proyek nyata.
-
-Penelitian ini dilakukan dalam konteks pengembangan proyek "Seerumah", sebuah platform properti yang dikembangkan pada lingkungan startup. Studi terkait pengembangan perangkat lunak di startup menunjukkan bahwa tim umumnya beroperasi dengan sumber daya terbatas dan dituntut menghasilkan produk dalam waktu singkat melalui pendekatan iteratif serta pengembangan Minimum Viable Product (MVP) [7]. Kondisi tersebut menjadikan pemanfaatan teknologi seperti AI generatif semakin relevan. Meskipun demikian, tantangan baru muncul terkait pengalaman pengembang (Developer Experience). Sebagaimana diungkapkan oleh Vaithilingam et al. (2022), meskipun AI mempercepat penulisan awal, pengembang sering kali menghadapi beban kognitif tambahan dalam proses verifikasi dan perbaikan (debugging) jika hasil kode tidak langsung dapat digunakan [10]. Oleh karena itu, efektivitas prompt menjadi kunci untuk meminimalkan beban tersebut.
-
-Dalam penelitian ini, kode yang dihasilkan Cursor AI Pro dibandingkan dengan desain acuan dari tim UI/UX yang dibuat menggunakan Figma. Perbandingan ini bertujuan untuk menilai tingkat kesesuaian tampilan antara hasil AI dengan desain yang telah ditentukan. Figma dipilih sebagai acuan karena beberapa alasan. Pertama, platform ini telah menjadi standar industri untuk kolaborasi antara desainer dan developer [3]. Kedua, Figma menyediakan spesifikasi desain yang sangat detail, seperti design tokens, spacing, dan typography, yang dapat digunakan sebagai benchmark objektif dalam evaluasi. Ketiga, proses design handoff dari Figma ke frontend developer merupakan praktik yang umum diterapkan dalam pengembangan web modern, sehingga penelitian ini mencerminkan kondisi nyata yang terjadi di lapangan.
-
-Selain evaluasi visual, struktur kode juga dievaluasi berdasarkan prinsip best practice dalam pengembangan frontend menggunakan React, Next.js, dan Tailwind CSS. Evaluasi ini mencakup kerapihan struktur komponen, modularitas, keterbacaan, dan konsistensi kode. Pendekatan evaluasi ini juga digunakan dalam beberapa penelitian lain yang menilai kualitas kode hasil AI generatif [3], [5]. Penting untuk dicatat bahwa evaluasi ini tidak sekadar melihat kemiripan teks, melainkan memvalidasi functional correctness sebagaimana ditekankan oleh Chen et al. (2021), yaitu memastikan bahwa kode yang dihasilkan benar-benar dapat dieksekusi, bebas dari kesalahan logika fatal, dan memenuhi standar keamanan [9].
-
-Berdasarkan kondisi tersebut, diperlukan analisis mengenai bagaimana variasi prompt mempengaruhi hasil pengembangan frontend berbasis AI generatif, khususnya dalam konteks proyek nyata di lingkungan startup. Meskipun berbagai penelitian terdahulu telah membahas potensi AI generatif dalam rekayasa perangkat lunak [1] dan peran model bahasa dalam pengembangan frontend [2], belum banyak studi yang secara spesifik mengevaluasi efektivitas alat context-aware seperti Cursor AI Pro dalam skenario nyata. Mayoritas penelitian sebelumnya berfokus pada penggunaan AI sebagai generator kode tunggal, tanpa membandingkan pengaruh variasi prompt terhadap kepatuhan desain yang ketat di lingkungan startup. Oleh karena itu, penelitian ini hadir untuk menjembatani celah tersebut dengan menganalisis secara komparatif bagaimana teknik prompt engineering yang berbeda dapat mempengaruhi akurasi visual dan kualitas struktur kode.
-
-Analisis komparatif ini juga mengadopsi pendekatan kuantifikasi data kualitatif
-[8] untuk mengidentifikasi pola efektivitas yang terukur dari setiap variasi prompt
-dalam pengembangan antarmuka modern.
-
-
-
-1.2. Batasan Masalah
-Untuk memfokuskan penelitian dan menjaga relevansi hasil, penelitian ini memiliki beberapa batasan sebagai berikut:
-1. Penelitian berfokus pada penggunaan Cursor AI Pro dengan Mode Auto dalam pembuatan frontend website properti "Seerumah". Mode ini memungkinkan sistem memilih model AI (seperti Claude 3.5 Sonnet, GPT-4o, dll) secara otomatis berdasarkan kompleksitas tugas. Penelitian ini memposisikan Cursor AI Pro sebagai satu kesatuan sistem (black box tool), di mana perubahan model dinamis dianggap sebagai karakteristik inherent (bawaan) dari alat bantu tersebut. Oleh karena itu, penelitian tidak bertujuan untuk mengisolasi kinerja model bahasa (model
-
-benchmarking) secara spesifik, melainkan mengevaluasi efektivitas teknik prompt engineering dalam mengendalikan alur kerja alat bantu tersebut pada skenario penggunaan default (real-world workflow).
-2. Penelitian ini membatasi ruang lingkup prompt engineering pada tahap perancangan dan evaluasi variasi prompt berdasarkan tingkat kompleksitas instruksi (sederhana, terstruktur, dan kontekstual), tanpa mencakup teknik lanjutan seperti few-shot prompting, chain-of-thought prompting, maupun iterative prompt optimization.
-3. Variasi prompt yang dianalisis terbatas pada tiga jenis: prompt sederhana, prompt terstruktur, dan prompt kontekstual. Variasi prompt lain di luar kategori tersebut tidak dibahas.
-4. Komponen frontend yang diimplementasikan dibatasi pada lima komponen utama: HomePage, Property Listing Card, Property Detail Page, Search Filter Bar Component, dan Navigation Bar.
-5. Tech stack yang digunakan dibatasi pada Next.js 14, TypeScript, dan Tailwind CSS sesuai dengan standar proyek Seerumah. Framework atau library lain tidak digunakan dalam penelitian ini.
-6. Evaluasi visual dibatasi pada kesesuaian dengan desain Figma yang telah dibuat oleh tim UI/UX Seerumah. Aspek user experience dan usability testing tidak termasuk dalam scope penelitian.
-7. Evaluasi struktur kode dibatasi pada aspek code organization, component structure, TypeScript usage, Tailwind implementation, keterbacaan, modularitas, dan konsistensi. Evaluasi tidak mencakup aspek performance optimization dan accessibility testing secara mendalam.
-8. Penelitian ini bersifat kualitatif komparatif. Penggunaan metode pembobotan skor (scoring) dalam evaluasi hanya berfungsi sebagai alat bantu deskriptif untuk memvisualisasikan perbandingan antar-prompt, bukan untuk melakukan pengujian hipotesis statistik (statistik inferensial) ataupun generalisasi populasi secara luas. Fokus utama tetap pada analisis pola struktur kode dan karakteristik visual.
-9. Konteks penelitian dibatasi pada lingkungan startup dengan karakteristik sumber daya terbatas dan kebutuhan pengembangan cepat. Hasil penelitian mungkin tidak langsung dapat digeneralisasi untuk konteks organisasi besar atau enterprise.
-10. Fokus Implementasi Sisi Frontend dengan yang sudah diberikan (Tanpa Integrasi Backend): Penelitian ini dibatasi secara eksklusif pada pengembangan antarmuka pengguna (frontend development) dengan menggunakan desain yang sudah diberikan tim UI/UX dan tidak mencakup integrasi dengan sistem backend, basis data (database), maupun layanan pihak ketiga melalui API.
-
-1.3. Perumusan Masalah
-
-Berdasarkan latar belakang tersebut, rumusan masalah penelitian ini adalah:
-
-1. Apa perbedaan kode program frontend yang dihasilkan Cursor AI Pro ketika menggunakan variasi prompt (sederhana, terstruktur, dan kontekstual)?
-2. Bagaimana kesesuaian tampilan hasil AI dibandingkan dengan desain Figma?
-3. Bagaimana kesesuaian struktur kode hasil AI dibandingkan dengan prinsip
-best practice frontend (Next.js & Tailwind CSS)?
-
-
-1.4. Tujuan
-
-Tujuan penelitian ini adalah:
-
-1. Mengidentifikasi dan menganalisis perbedaan kode program frontend yang dihasilkan Cursor AI Pro ketika menggunakan prompt sederhana, prompt terstruktur, dan prompt kontekstual, serta menemukan karakteristik prompt yang paling efektif untuk proyek "Seerumah".
-2. Mengevaluasi tingkat kesesuaian tampilan hasil AI dengan desain Figma yang dibuat oleh tim UI/UX.
-3. Mengevaluasi kualitas struktur kode hasil AI berdasarkan prinsip best practice pengembangan frontend dengan React, Next.js, dan Tailwind CSS.
-
-
-1.5. Rencana Kegiatan
-
-Pelaksanaan penelitian analisis prompt engineering dalam pengembangan frontend website properti Seerumah menggunakan model AI Generatif akan melalui serangkaian kegiatan. Berikut merupakan detail rencana kegiatan tersebut:
-
-1. Rencana kegiatan penelitian ini terdiri dari beberapa tahap. Tahap pertama adalah melakukan studi literatur terkait AI generatif, prompt engineering, dan pengembangan frontend pada lingkungan startup. Studi literatur dilakukan untuk memperoleh dasar teoritis yang mendukung penyusunan rumusan masalah dan metodologi penelitian.
-2. Tahap berikutnya adalah merumuskan masalah, tujuan, dan batasan penelitian. Setelah itu, peneliti menyusun metodologi penelitian yang mencakup pengelompokan variasi prompt, penentuan indikator evaluasi
-
-tampilan, dan indikator evaluasi struktur kode. Pada tahap ini, desain Figma yang telah disiapkan oleh tim UI/UX digunakan sebagai acuan pembanding.
-3. Tahap selanjutnya adalah pelaksanaan eksperimen menggunakan Cursor AI. Eksperimen terdiri dari tiga jenis prompt, yaitu prompt sederhana, prompt terstruktur, dan prompt kontekstual. Setiap jenis prompt menghasilkan kode frontend berbasis Next.js dan Tailwind CSS.
-4. Setelah eksperimen selesai, peneliti melakukan evaluasi terhadap hasil yang dihasilkan AI. Evaluasi dilakukan dengan membandingkan tampilan UI hasil AI dengan desain Figma yang diberikan oleh UI/UX Designer. Struktur kode juga dinilai berdasarkan prinsip best practice frontend, seperti modularitas, kerapian komponen, dan konsistensi penulisan.
-5. Tahap terakhir adalah analisis hasil, penyusunan kesimpulan, dan perumusan rekomendasi bagi pengembangan frontend berbasis AI generatif di masa mendatang.
-
-
-1.6. Jadwal Kegiatan
-Jadwal pelaksanaan dibuat berdasarkan rencana kegiatan.
-
-Tabel 1.1: Jadwal Kegiatan
-
-
-KegiatanBulan123456Studi literatur: AI generatif, frontend, prompt engineering, startupPerumusan masalah dan tujuanPenyusunan landasan teoriPenyusunan metodologi: Variasi prompt & indikator evaluasi
-Pengumpulan desain Figma dari tim UI/UXEksperimen
-prompt sederhanaEksperimen prompt terstrukturEksperimen prompt kontekstualEvaluasi kesesuaian tampilanEvaluasi struktur kodeAnalisis dan pembahasanKesimpulan dan rekomendasiFinalisasi laporan
-      BAB II KAJIAN PUSTAKA
-
-2.1 Kajian Penelitian Terdahulu
-
-Bagian ini membahas ringkasan penelitian terdahulu yang relevan dengan isu utama penelitian, yaitu penggunaan AI generatif, prompt engineering, pengembangan frontend, dan pemanfaatan AI dalam proses pembuatan perangkat lunak.
-
-2.1.1 Penggunaan AI Generatif dalam Software Development
-
-(1) Future of Software Development with Generative AI - Sauvola et al. (2024)
-
-Penelitian ini menjelaskan potensi AI generatif dalam mempercepat proses pengembangan perangkat lunak. Studi tersebut menunjukkan bahwa model AI dapat membantu penulisan kode, penyusunan struktur program, dan pengurangan beban kerja teknis. Temuan ini memberikan landasan bahwa AI dapat meningkatkan produktivitas dalam pengembangan frontend [1].
-
-2.1.2 Pengaruh Prompt terhadap Kualitas Kode frontend
-
-(2) Generative AI in frontend Web Development - Hosseini & Ryden (2024)
-
-Penelitian ini menganalisis peran ChatGPT dalam pengembangan frontend. Studi tersebut membandingkan AI sebagai alat bantu dan sebagai pengembang tunggal. Hasil penelitian menunjukkan bahwa kode program AI sangat dipengaruhi oleh kualitas instruksi atau prompt yang diberikan. Temuan ini relevan dengan fokus penelitian ini, yaitu menganalisis variasi prompt [2].
-
-2.1.3 Konversi Desain UI/UX menjadi Kode frontend
-
-(3) Design2Code: Benchmarking Multimodal Code Generation - Si et al. (2025)
-
-Penelitian ini memperkenalkan benchmark untuk menguji kemampuan AI dalam menerjemahkan desain antarmuka menjadi kode frontend. Studi ini menunjukkan bahwa detail instruksi sangat mempengaruhi ketepatan struktur kode. Temuan ini mendukung penggunaan desain Figma sebagai acuan dalam penelitian ini [3].
-
-2.1.4 Pembangkitan UI Berbasis Intent dan Deskripsi
-
-(4) frontend Diffusion: Intent-Based User Interfaces - Zhang et al. (2014)
-
-Studi ini membahas model difusi yang menghasilkan antarmuka berdasarkan intent pengguna. Penelitian ini menekankan pentingnya kejelasan deskripsi atau instruksi dalam menentukan ketepatan hasil AI. Hal ini memperkuat alasan penggunaan variasi prompt dalam penelitian[4].
-
-2.1.5 Evaluasi Kualitas Kode yang Dihasilkan AI
-
-(5) UICoder: Finetuning LLM to Generate UI Code with Feedback - Jiang et al. (2024)
-
-Penelitian ini menunjukkan bahwa AI generatif dapat menghasilkan kode yang lebih konsisten ketika diberi instruksi yang jelas dan terarah. Studi ini juga menggunakan kriteria evaluasi seperti modularitas, konsistensi, dan penamaan komponen. Temuan ini sejalan dengan metode evaluasi struktur kode dalam penelitian ini [5].
-
-2.1.6 AI-Assisted Coding dengan Context-Aware System
-
-(6) CursorCore: Assist Programming through Aligning Anything - Jiang et al. (2024)
-
-Penelitian ini menguraikan mekanisme dukungan pemrograman menggunakan model generatif yang memahami konteks multi-berkas. Hasil ini mendukung penggunaan Cursor AI Pro dalam penelitian, karena platform tersebut menawarkan pemahaman konteks proyek yang lebih baik dibandingkan model berbasis chat biasa [6].
-
-2.1.7 Karakteristik Pengembangan Software di Startup
-
-(7) Software Development in Startups - Paternoster et al. (2024)
-
-Penelitian ini membahas karakteristik pengembangan perangkat lunak pada startup, termasuk tekanan waktu, kebutuhan MVP, dan pengembangan yang iteratif. Studi ini relevan karena proyek "Seerumah" dikembangkan dalam konteks startup yang membutuhkan pengembangan cepat dan efisien [7].
-
-2.1.8 Metodologi Kuantifikasi Data Kualitatif
-
-(8) Real Qualitative Researchers Do Not Count - Sandelowski (2001)
-
-Penelitian ini membahas validitas penggunaan angka dalam penelitian kualitatif, yang dikenal dengan istilah quantitizing. Studi ini menegaskan bahwa konversi data kualitatif menjadi format numerik (skor) adalah metode yang sah untuk mendeskripsikan keteraturan pola tanpa mengubah paradigma penelitian menjadi
-
-positivistik. Referensi ini menjadi landasan metodologis utama dalam teknik pembobotan skor yang digunakan pada penelitian ini [8].
-
-2.1.9 Evaluasi Fungsionalitas Kode AI
-
-(9) Evaluating Large Language Models Trained on Code - Chen et al. (2021)
-
-Paper dari tim OpenAI ini menjadi standar industri dalam mengevaluasi model kode (seperti Codex). Penelitian ini memperkenalkan konsep functional correctness, di mana kualitas kode dinilai berdasarkan keberhasilan eksekusi uji unit (unit tests), bukan sekadar kemiripan teks dengan referensi. Hal ini mendukung metode evaluasi struktur kode yang diterapkan dalam penelitian ini [9].
-
-2.1.10 Evaluasi User Experience pada AI Coding Tools
-
-(10) Expectation vs. Experience: Evaluating Usability of Code Generation Tools - Vaithilingam et al. (2022)
-
-Penelitian dari Microsoft Research ini menyoroti kesenjangan antara ekspektasi dan pengalaman nyata pengembang saat menggunakan AI coding assistants. Temuan utamanya adalah bahwa beban kognitif pengembang sering kali bergeser dari "menulis kode" menjadi "memeriksa dan memperbaiki kode" (debugging effort). Studi ini menjadi acuan dalam penyusunan indikator Developer Experience dan efisiensi iterasi pada penelitian ini [10].
-
-2.1.11 Prompt Patterns dalam Prompt Engineering
-
-(11) J. White, Q. Fu, S. Hays, M. Sandborn, C. Olea, H. Gilbert, A. Elnashar, J. Spencer-Smith, and D. C. Schmidt, "A Prompt Pattern Catalog to Enhance Prompt Engineering with ChatGPT,"
-
-Prompt patterns merupakan pendekatan dalam prompt engineering yang berfokus pada penggunaan pola atau struktur tertentu dalam penyusunan prompt untuk mengarahkan keluaran model AI secara lebih efektif. Konsep ini diperkenalkan dalam penelitian A Prompt Pattern Catalog to Enhance Prompt Engineering with ChatGPT yang mengadaptasi prinsip design patterns dalam rekayasa perangkat lunak ke dalam konteks interaksi dengan Large Language Model (LLM).
-
-Dalam pendekatan ini, prompt tidak dipandang sebagai sekadar instruksi tunggal, melainkan sebagai bagian dari pola yang dapat digunakan kembali (reusable) untuk menyelesaikan permasalahan tertentu. Setiap prompt pattern memiliki tujuan spesifik, struktur penyusunan, serta cara penggunaan yang dapat membantu pengguna dalam menghasilkan output yang lebih konsisten dan terarah.
-
-Prompt patterns juga memungkinkan proses perancangan prompt menjadi lebih sistematis, karena pengguna dapat memilih pola yang sesuai dengan kebutuhan, seperti pemberian konteks (context injection), penggunaan template terstruktur, maupun penentuan peran (persona) dalam instruksi. Dengan adanya pola-pola tersebut, interaksi antara pengguna dan model AI dapat dioptimalkan tanpa harus selalu menggunakan teknik lanjutan seperti few-shot prompting atau chain-of-thought prompting.
-
-Dalam konteks penelitian ini, konsep prompt patterns digunakan sebagai dasar dalam menyusun variasi prompt berdasarkan tingkat kompleksitas instruksi, yaitu prompt sederhana, terstruktur, dan kontekstual. Ketiga variasi tersebut dapat dipandang sebagai bentuk implementasi dari pendekatan berbasis pola dalam prompt engineering, yang kemudian dianalisis untuk melihat pengaruhnya terhadap kualitas output yang dihasilkan oleh model AI dalam pengembangan frontend.
-
-
-2.2 Keterkaitan Penelitian Terdahulu dengan Penelitian Ini
-
-Berdasarkan penelitian-penelitian terdahulu, dapat dilihat bahwa kualitas instruksi atau prompt memiliki pengaruh signifikan terhadap hasil program AI generatif. Penelitian [2], [3], [4], dan [5] menunjukkan bahwa detail dan struktur prompt menentukan kualitas kode serta ketepatan implementasi antarmuka.
-
-Penelitian [1] dan [6] menunjukkan bahwa AI generatif dapat membantu proses pengembangan perangkat lunak, terutama dengan kemampuan memahami konteks kode. Hal ini sesuai dengan penggunaan Cursor AI Pro pada penelitian ini yang memanfaatkan konteks proyek untuk menghasilkan rekomendasi kode.
-
-Penelitian [7] memberikan landasan mengenai kebutuhan pengembangan cepat dalam lingkungan startup. Hal ini relevan dengan konteks proyek "Seerumah," yang mengedepankan efisiensi waktu melalui pemanfaatan AI generatif dalam pembuatan frontend.
-
-Dengan demikian, penelitian ini mengisi celah penelitian terkait analisis pengaruh variasi prompt dalam menghasilkan kode frontend berbasis Next.js dan Tailwind CSS menggunakan Cursor AI Pro, serta membandingkannya dengan desain acuan Figma.
-
-2.3 Teori Pendukung
-
-Teori pendukung pada penelitian ini disusun dari literatur yang relevan dan digunakan sebagai dasar konseptual untuk menganalisis penggunaan AI generatif,
-
-teknik penyusunan prompt, dan evaluasi kualitas kode frontend. Setiap teori dilengkapi acuan untuk menjaga kejelasan dan integritas akademik.
-
-2.3.1 Artificial Intelligence Generatif
-
-Artificial Intelligence (AI) generatif merupakan cabang dari kecerdasan buatan yang berfokus pada pembuatan konten baru, baik berupa teks, gambar, audio, maupun kode pemrograman, berdasarkan pola yang dipelajari dari data pelatihan (training data). Berbeda dengan model AI diskriminatif yang hanya bertugas mengklasifikasikan data, model generatif memiliki kemampuan untuk memprediksi token atau piksel berikutnya guna membentuk output yang koheren. Dalam konteks pengembangan perangkat lunak, teknologi ini memanfaatkan arsitektur Large Language Models (LLM) untuk memahami instruksi bahasa alami dan menerjemahkannya menjadi sintaks kode yang valid [1].
-
-Pemanfaatan AI generatif dalam rekayasa perangkat lunak telah mengubah paradigma pengembangan dari penulisan kode manual (manual coding) menjadi pola kolaboratif. Pengembang dapat memanfaatkan AI sebagai asisten cerdas (coding companion) untuk melakukan tugas-tugas repetitif seperti menyarankan potongan kode (code suggestion), membangun struktur fungsi dasar, hingga mendeteksi potensi bug atau celah keamanan (debugging). Hal ini memungkinkan pengembang untuk mengalokasikan waktu lebih banyak pada penyelesaian masalah logika bisnis yang kompleks. Namun, evaluasi terhadap kode yang dihasilkan model ini tidak cukup hanya mengandalkan kemiripan teks. Chen et al. (2021) dalam penelitiannya mengenai evaluasi Large Language Models menegaskan pentingnya validasi functional correctness, yaitu memastikan bahwa kode hasil generasi AI tidak hanya terlihat benar secara sintaksis, tetapi juga lolos uji eksekusi (unit testing) untuk menjamin kebenaran logika fungsionalnya [9].
-
-
-2.3.2 Prompt Engineering
-
-Prompt engineering didefinisikan sebagai pendekatan sistematis untuk memformulasikan, mengoptimalkan, dan menyusun input teks (instruksi) guna memandu Large Language Model (LLM) agar menghasilkan output yang spesifik, akurat, dan relevan [2]. Dalam konteks rekayasa perangkat lunak, prompt engineering bukan sekadar penyusunan kalimat tanya, melainkan mekanisme untuk menjembatani kesenjangan antara human intent (maksud pengembang) dengan representasi probabilitas model AI [5].
-
-Kualitas sebuah prompt sangat menentukan kinerja model generatif. Penelitian menunjukkan bahwa teknik prompting yang berbeda dapat secara drastis mengubah kualitas kode yang dihasilkan [5]. Kekurangan konteks atau instruksi
-
-yang ambigu sering kali menyebabkan fenomena "halusinasi" pada AI, di mana model menghasilkan kode yang tampak benar secara sintaksis namun menggunakan library yang tidak ada atau fungsi yang sudah usang (deprecated). Fenomena ini berdampak langsung pada pengalaman pengembang (Developer Experience). Vaithilingam et al. (2022) menemukan bahwa meskipun AI mempercepat penulisan awal, pengembang sering kali mengalami peningkatan beban kognitif saat harus memeriksa dan memperbaiki kode yang salah, yang justru dapat mengurangi efisiensi kerja jika prompt yang digunakan tidak presisi [10]. Oleh karena itu, context-awareness dalam penyusunan prompt menjadi variabel kunci untuk menghasilkan kode yang production-ready dan meminimalkan upaya perbaikan manual.
-
-Dalam penelitian ini, prompt engineering dipahami sebagai proses perancangan dan penyusunan prompt untuk mengarahkan keluaran model AI agar sesuai dengan kebutuhan pengguna. Mengacu pada konsep dalam A Prompt Pattern Catalog to Enhance Prompt Engineering with ChatGPT, prompt engineering tidak hanya mencakup teknik lanjutan, tetapi juga meliputi penggunaan variasi pola prompt (prompt patterns) sebagai pendekatan dalam mengoptimalkan interaksi dengan model AI.
-
-2.3.3 Frontend Development (React, Next.js, Tailwind CSS)
-
-Frontend development merupakan proses teknis dalam menerjemahkan desain visual dan konsep interaksi menjadi antarmuka pengguna yang fungsional melalui kode pemrograman. Peran utama pengembangan ini adalah memastikan pengguna dapat berinteraksi dengan aplikasi secara intuitif, responsif, dan efisien. Dalam praktiknya, pengembangan frontend modern tidak lagi sekadar menulis HTML dan CSS statis, melainkan melibatkan pengelolaan state, logika komponen, dan integrasi data yang kompleks [2]. Kualitas kode pada tahap ini sangat krusial karena berdampak langsung pada performa aplikasi dan pengalaman pengguna (user experience).
-
-Dalam penelitian ini, teknologi utama yang digunakan adalah Next.js, sebuah kerangka kerja (framework) berbasis React yang populer di kalangan industri. Next.js menawarkan keunggulan dalam hal Server-Side Rendering (SSR) dan manajemen routing yang lebih terstruktur dibandingkan React standar. Penggunaan Next.js memungkinkan pengembang untuk memecah antarmuka menjadi komponen-komponen modular yang dapat digunakan kembali (reusable components), yang sejalan dengan prinsip clean code dan efisiensi pengembangan [3]. Struktur folder yang ditawarkan oleh Next.js (seperti App Router) juga membantu menjaga konsistensi arsitektur proyek, sehingga memudahkan pemeliharaan kode dalam jangka panjang.
-
-Selain kerangka kerja logika, aspek visual diimplementasikan menggunakan Tailwind CSS. Berbeda dengan pendekatan CSS tradisional, Tailwind CSS menerapkan konsep utility-first, di mana pengembang menyusun tampilan langsung pada elemen HTML menggunakan kelas-kelas utilitas yang telah didefinisikan sebelumnya. Pendekatan ini mempercepat proses styling karena pengembang tidak perlu berpindah antar-file (antara file HTML/JSX dan file CSS terpisah) secara berlebihan. Selain itu, Tailwind CSS sangat mendukung penerapan design tokens dari Figma, memastikan bahwa warna, tipografi, dan jarak (spacing) yang diimplementasikan dalam kode sangat presisi dengan desain acuan [3], [5].
-
-2.3.4 Evaluasi Struktur Kode
-
-Evaluasi struktur kode adalah proses penilaian kualitas internal perangkat lunak untuk memastikan bahwa kode yang ditulis mudah dipahami, dipelihara, dan dikembangkan di masa depan (maintainability). Proses ini tidak hanya melihat apakah kode berjalan tanpa error, tetapi juga meninjau aspek kebersihan kode (clean code). Beberapa indikator utama yang dievaluasi meliputi kejelasan penamaan variabel dan fungsi (naming convention), modularitas atau pemisahan tanggung jawab antar-komponen, serta konsistensi format penulisan.
-
-Dalam konteks kode yang dihasilkan oleh AI generatif, evaluasi struktur menjadi semakin krusial karena model AI seringkali menghasilkan kode yang benar secara fungsional namun berantakan secara struktur (spaghetti code). Penelitian menunjukkan bahwa validasi terhadap prinsip best practice, seperti penghapusan kode yang tidak terpakai (dead code) dan pengurangan kompleksitas siklomatik, diperlukan untuk menjamin standar industri [5]. Untuk mengukur aspek-aspek kualitatif tersebut secara objektif, penelitian ini mengadopsi pendekatan quantitizing. Sebagaimana dijelaskan oleh Sandelowski (2001), teknik ini memungkinkan peneliti untuk mengonversi hasil observasi kualitatif yang mendalam (seperti kerapian kode) menjadi data numerik atau skor, guna memfasilitasi perbandingan pola yang lebih sistematis tanpa menghilangkan konteks interpretatifnya [8].
-
-
-2.3.5 Pengembangan Perangkat Lunak pada Startup
-
-Lingkungan perusahaan rintisan atau startup memiliki karakteristik operasional yang sangat berbeda dibandingkan dengan perusahaan korporasi mapan. Menurut Paternoster et al. (2014), startup umumnya beroperasi di bawah ketidakpastian pasar yang tinggi (high market uncertainty) serta keterbatasan sumber daya, baik dari segi pendanaan maupun jumlah tim pengembang. Kondisi ini menuntut tim
-
-teknis untuk bekerja dengan ritme yang sangat cepat dan adaptif terhadap perubahan kebutuhan bisnis yang dinamis [7].
-
-Untuk mengatasi tantangan tersebut, metode pengembangan perangkat lunak di startup sering kali berfokus pada pembuatan Minimum Viable Product (MVP). MVP adalah versi produk dengan fitur dasar yang cukup untuk menarik pengguna awal dan memvalidasi ide bisnis. Dalam fase ini, kecepatan pengiriman (speed of delivery) menjadi prioritas utama dibandingkan kesempurnaan fitur yang menyeluruh. Proses pengembangan dilakukan secara iteratif, di mana kode ditulis, diuji, dan diperbarui terus-menerus berdasarkan umpan balik pengguna dalam siklus waktu yang singkat.
-
-Oleh sebab itu, pemanfaatan alat bantu produktivitas seperti kecerdasan buatan generatif (Generative AI) menjadi sangat relevan dalam ekosistem startup. Alat seperti Cursor AI Pro dapat memangkas waktu penulisan kode boilerplate dan mempercepat implementasi antarmuka frontend, sehingga tim pengembang dapat fokus pada logika bisnis yang lebih kompleks. Efisiensi ini memungkinkan startup seperti "Seerumah" untuk mempertahankan momentum pengembangan produk meskipun dengan sumber daya tim yang terbatas [7].
-
-          BAB III METODOLOGI PENELITIAN
-
-3.1 Alur Penelitian
-
-Penelitian ini menggunakan pendekatan kualitatif komparatif. Pendekatan ini dipilih karena fokus utama penelitian terletak pada evaluasi kualitas artefak perangkat lunak (kode program dan antarmuka visual) secara interpretatif dan mendalam. Penelitian ini menitikberatkan pada struktur logika dan kesesuaian desain, melampaui sekadar metrik performa teknis (kuantitatif).
-
-Pemilihan metode kualitatif komparatif didasari oleh tiga alasan utama:
-
-1. Karakteristik Data Interpretatif: Objek yang diteliti adalah struktur kode (clean code, modularitas, penamaan variabel) dan akurasi visual (pixel-perfect). Validasi aspek-aspek ini membutuhkan analisis deskriptif mendalam berdasarkan standar best practice, yang tidak dapat sepenuhnya ditangkap oleh analisis statistik murni.
-2. Analisis Perbandingan Kausalitas: Penelitian ini bertujuan membandingkan secara langsung (head-to-head) bagaimana variasi input (Prompt Sederhana, Terstruktur, Kontekstual) mempengaruhi hasil output. Metode komparatif memungkinkan peneliti untuk mengisolasi variabel prompt dan melihat dampaknya secara spesifik terhadap kualitas kode.
-3. Konteks Eksploratif: Mengingat penggunaan AI generatif dalam alur kerja developer adalah fenomena yang relatif baru, pendekatan kualitatif memungkinkan peneliti untuk mengeksplorasi dan menemukan pola-pola atau karakteristik unik ("nuance") dalam interaksi antara instruksi manusia dan respons AI yang mungkin terlewatkan jika menggunakan metode kuantitatif murni.
-
-Alur penelitian dirancang secara sistematis untuk memfasilitasi perbandingan tersebut dan menjawab setiap rumusan masalah yang telah ditetapkan. Gambar 3.1 menunjukkan diagram alur penelitian secara keseluruhan.
-
-
-
-
-
-
-[Gambar 3.1: Flowchart Alur Penelitian]
-
-3.1.1 Studi Literatur
-
-Tahap ini dilakukan untuk mengumpulkan referensi terkait AI generatif dalam pengembangan perangkat lunak, prompt engineering, dan best practice pengembangan frontend menggunakan React, Next.js, dan Tailwind CSS.
-
-3.1.2 Penerimaan Desain dari Tim UI/UX
-Sebagai frontend developer di tim Seerumah, peneliti menerima desain antarmuka website properti yang telah dibuat oleh tim UI/UX dalam format Figma. Desain ini mencakup seluruh komponen dan halaman yang perlu diimplementasikan.
-
-3.1.3 Analisis Desain Figma
-
-Sebelum memulai implementasi, dilakukan analisis mendalam terhadap desain Figma. Proses ini mencakup pemahaman terhadap struktur komponen yang perlu dibuat serta identifikasi elemen-elemen visual seperti warna, tipografi, dan spacing. Selain itu, tahap ini juga meliputi penentuan komponen mana yang akan dijadikan objek penelitian serta persiapan aset yang diperlukan, seperti ikon dan gambar placeholder.
-
-3.1.4 Setup Environment Pengembangan
-
-Persiapan lingkungan pengembangan meliputi instalasi perangkat lunak Cursor AI Pro dan inisiasi proyek Next.js dengan Tailwind CSS sesuai standar tim. Tahapan ini dilanjutkan dengan konfigurasi struktur folder proyek 'Seerumah' serta integrasi dengan repositori Git. Penggunaan version control ini bertujuan untuk mendokumentasikan riwayat perubahan kode (history) dan mengisolasi hasil eksperimen dari setiap variasi prompt yang diuji
-
-3.1.5 Perancangan Variasi Prompt
-
-Tahap ini merancang tiga jenis prompt yang akan digunakan dalam penelitian, dengan karakteristik yang berbeda untuk setiap variasi. Perancangan prompt disesuaikan dengan workflow frontend developer yang menerima desain dari tim UI/UX.
-
-3.1.6 Implementasi dengan Cursor AI Pro
-
-Setiap variasi prompt digunakan untuk menghasilkan kode frontend komponen yang sama, sehingga dapat dibandingkan secara objektif. Proses ini mensimulasikan workflow pengembangan frontend dengan bantuan AI.
-
-3.1.7 Pengumpulan Hasil Kode
-
-Semua hasil kode dari ketiga variasi prompt dikumpulkan dan didokumentasikan untuk tahap evaluasi.
-
-3.1.8 Evaluasi Kesesuaian Visual dengan Desain UI/UX
-
-Hasil tampilan dari setiap kode dibandingkan dengan desain Figma yang diberikan oleh tim UI/UX berdasarkan aspek-aspek visual tertentu.
-
-3.1.9 Evaluasi Struktur Kode dengan Best Practice
-
-Struktur kode dievaluasi berdasarkan prinsip-prinsip best practice pengembangan
-frontend dan standar kode yang diterapkan di tim Seerumah.
-
-3.1.10 Analisis Komparatif
-
-Hasil dari ketiga variasi prompt dianalisis secara komparatif untuk mengidentifikasi pola dan karakteristik prompt yang optimal dalam konteks workflow frontend developer.
-
-3.1.11 Kesimpulan dan Rekomendasi
-
-Berdasarkan analisis, ditarik kesimpulan dan diberikan rekomendasi terkait penggunaan prompt engineering dalam pengembangan frontend dengan AI generatif untuk meningkatkan efisiensi kerja frontend developer.
-
-
-
-3.2 Desain Penelitian
-
-3.2.1 Konteks Penelitian
-
-Penelitian ini dilakukan dalam konteks nyata pengembangan website properti "Seerumah" di lingkungan startup. Struktur tim yang terlibat terdiri dari tim UI/UX yang bertanggung jawab membuat desain antarmuka di Figma, serta frontend developer (peneliti) yang bertugas mengimplementasikan desain tersebut menjadi kode program. Dalam prosesnya, pengembangan didukung oleh Cursor AI Pro sebagai alat bantu coding berbasis AI generatif.
-
-Workflow Tim:
-
-
-[Gambar 3.2: Flowchart Alur Penelitian]
-
-Penelitian ini berfokus pada tahap "Implementasi Kode" dengan memanfaatkan Cursor AI Pro.
-
-3.2.2 Objek Penelitian
-
-Objek penelitian difokuskan pada komponen-komponen frontend website properti "Seerumah". Proses pengembangan komponen tersebut dilakukan menggunakan platform Cursor AI Pro dengan konfigurasi Mode Auto. Mode ini memberikan
-
-akses ke berbagai model bahasa besar, seperti Composer 1, Opus 4.5, Claude Sonnet 4.5, GPT-5.1 Codex Max, GPT-5.1, Gemini 3 Pro, GPT-5.1 Codex Mini, dan Grok Code. Keunggulan Mode Auto pada Cursor AI Pro terletak pada kemampuannya untuk memilih model yang paling relevan secara otomatis berdasarkan tingkat kesulitan task atau kompleksitas prompt yang diberikan.
-
-Dari sisi teknologi pemrograman, implementasi kode dibangun di atas kerangka kerja (framework) Next.js berbasis React dengan penggunaan Tailwind CSS untuk keperluan styling. Seluruh proses implementasi antarmuka mengacu pada desain referensi yang disediakan oleh Tim UI/UX melalui platform Figma. Dalam penelitian ini, peneliti bertindak sebagai frontend developer yang bertanggung jawab menerjemahkan desain tersebut menjadi kode yang fungsional.
-
-
-3.2.3 Komponen yang Diuji
-
-Penelitian ini berfokus pada beberapa komponen kunci website properti yang telah didesain oleh tim UI/UX, antara lain:
-
-1. Property Listing Card - Komponen untuk menampilkan daftar properti
-
-
-[Gambar 3.3: Desain Figma - Properti List Card]
-
-Deskripsi: Card properti menampilkan gambar properti dengan slider navigasi antar foto nya, judul, harga, lokasi, dan informasi fasilitas (kamar tidur, kamar mandi, luas tanah) dan tombol interaktif heart icon.
-
-Tabel 3.1: Spesifikasi Container dan Layout Property Card
-
-Property
-Value
-Sumber Figma
-Width
-207px
-Frame property
-Height
-241px
-Auto layout
-Background
-#FFFFFF
-Fill
-Border Radius
-10px
-Corner radius
-Shadow
-0px 1px 3px rgba(0,0,0,0.1)
-Drop shadow
-Shadow Hover
-0px 4px 12px rgba(0,0,0,0.15)
-Hover state
-Padding
-16px
-Auto layout padding
-Vertical Gap
-12px
-Auto layout gap
-
-Tabel 3.2: Spesifikasi Typography Property Card
-
-Elemen
-Font
-Size
-Weight
-Line Height
-Color
-Notes
-Price
-popp ins
-17px
-700
-auto
-#1957
-A0
-semiBold italic
-
-Badge Text
-popp ins
-5px
-600
-9px
-#FFFF FF
-Medium italic
-Title
-popp ins
-10px
-700
-auto
-#5555
-55
-Max 2 lines
-Location
-popp ins
-6px
-400
-auto
-#6A71 81
-With icon
-Facilities
-popp ins
-6px
-400
-auto
-#3232
-32
-With icons
-Tabel 3.3: Spesifikasi Colors Property Card
-
-Token Name
-Hex Code
-Usage
-Appearance
-Primary-600
-#1957A0
-Price text, primary actions
-
-
-Primary-500
-#1957A0
-Badge background
-
-
-Gray-900
-#555555
-Title text
-
-
-
-Gray-500
-#6A7181
-Secondary text, icons
-
-
-White
-#FFFFFF
-Card background, badge text
-
-
-
-Tabel 3.4: Spesifikasi Spacing Property Card
-
-Elemen
-Property
-Value
-Notes
-Card
-Padding
-16px
-All sides
-Card
-Vertical Gap
-12px
-Between sections
-Header Row
-Margin Bottom
-8px
-Below price+badge
-Title
-Margin Bottom
-8px
-Below title
-Location
-Margin Bottom
-12px
-Below location
-Location
-Icon Gap
-4px
-Icon to text
-Facilities
-Item Gap
-12px
-Between facility items
-Facilities
-Icon Gap
-4px
-Icon to number
-
-Image
-Margin Bottom
-12px
-Below image
-Dots
-Gap
-4px
-Between dots
-
-
-Tabel 3.5: Spesifikasi Image dan Effects Property Card
-
-Property
-Value
-Notes
-Image
-Height
-131px
-Fixed
-Width
-100%
-Fill container
-Border Radius
-10px
-Rounded corners
-Object Fit
-Cover
-Maintain	aspect ratio
-Pagination Dots
-Size
-6px (diameter)
-Circle
-Gap
-4px
-Between dots
-
-Active Opacity
-100%
-Fully visible
-Inactive Opacity
-40%
-Semi-transparent
-Position
-Bottom 8px, centered
-Over image
-Effects
-Shadow Default
-0 1px 3px rgba(0,0,0,0.1)
-Subtle
-Shadow Hover
-0 4px 12px rgba(0,0,0,0.15)
-Elevated
-Transition
-all 0.2s ease-in-out
-Smooth
-
-
-
-
-2. Searchbar Filter Component - Komponen bar filter pencarian properti
-
-
-[Gambar 3.4: Desain Figma - Searchbar Filter Component]
-
-Deskripsi: searchbar filter komponen menampilkan 3 menu opsi yaitu opsi cari dengan keyword atau filter manual dan tanya seeri, searchbar filtering komponen ini mempunyai input field bar nya untuk user melakukan inputan nya.
-
-Tabel 3.6: Spesifikasi Searchbar Filter Component
-
-Property
-Value
-Sumber Figma
-Width
-730px
-Frame property
-Height
-Auto
-Auto layout
-Background
-#FFFFFF
-Fill
-Border Radius
-15px
-Corner radius
-Shadow
-0px 1px 3px rgba(0,0,0,0.1)
-Drop shadow
-Shadow Hover
-0px 4px 12px rgba(0,0,0,0.15)
-Hover state
-Padding
-16px
-Auto layout padding
-Gap between sections
-12px
-Auto layout gap
-
-Tabel 3.7: Spesifikasi Typography Searchbar Filter Component
-ElemenFontSiz eWeigh t Line HeightColorNotesTab Button (Active)Inter14p x60020px#FFFF FFSemibold, white text
-Tab Button (Inactive)Inter14p x50020px#64748
-BMedium, gray textSearch Placeholde rInter14p x40020px#94A3 B8Regular, light gray Search Input TextInter14p x40020px#1E29 3BRegular, dark when typed
-
-Tabel 3.8: Spesifikasi Colors Searchbar Filter Component
-Token Name Hex CodeUsageRGBPrimary-60 0#1957A 0Active tab background, search icon circlergb(30, 64, 175)Gray-900#1E293 BInput text (typed)rgb(30, 41, 59)Gray-600#F9FAF BInactive tab text, right search iconrgb(100, 116,
-139)Gray-400#94A3B 8Placeholder textrgb(148, 163,
-184)Gray-300#CBD5E 1Inactive tab borderrgb(203, 213,
-225)Gray-100#F1F5F9Container backgroundrgb(241, 245,
-249)White#FFFFF FActive tab text, search input backgroundrgb(255, 255,
-255)
-Tabel 3.9: Spesifikasi Spacing Searchbar Filter Component
-
-Elemen
-Property
-Value
-Notes
-
-Container
-Padding
-20px
-All sides
-Container
-Border Radius
-16px
-Large rounded
-Tab Section
-Margin Bottom
-16px
-Below tabs
-Tab Section
-Gap (horizontal)
-12px
-Between tab buttons
-Tab Button
-Padding
-12px 24px
-Vertical / Horizontal
-Tab Button
-Border Radius
-8px
-Medium rounded
-Search Input Container
-Padding
-14px
-All sides
-Search Input Container
-Border Radius
-12px
-Large rounded
-Search Input Container
-Gap
-12px
-Icon to input to icon
-Search Icon (Left)
-Size
-20px
-Circle diameter
-Search Icon (Left)
-Padding
-8px
-Inside circle
-Tabel 3.10: Spesifikasi Image dan Effects Searchbar Filter Component
-
-
-Property / ElemenValue / SpecificationNotes / DetailsTab ButtonsActive Tab Background#1957A0 Primary blueActive Tab Text#FFFFFF WhiteInactive Tab BackgroundTransparent No backgroundInactive Tab Border1px solid #F9FAFB Light grayTab Icon Size16px If presentSearch InputInput Background#FFFFFF WhiteInput Border1px solid #E2E8F0 atau None Light border or cleanInput Shadow0 1px 3px rgba(0,0,0,0.1) Subtle elevationLeft Icon CircleColor / Background#1957A0 background, #FFFFFF iconLeft Icon Size14px (icon inside 20px circle)Icon actual sizeRight Icon Color#555555 Gray iconRight Icon Size20px Icon sizeEffectsButton Hover BackgroundSlightly darker/lighter Interactive feedback
-Input Focus Border0 0 0 3px rgba(30,64,175,0.1) Focus ringTransitionall 0.2s ease-in-out Smooth
-
-3. Navigation Bar - Kepala dan navigasi website
-
-
-[Gambar 3.5: Desain Figma - Navbar]
-
-Deskripsi: navigation bar komponen menampilkan logo "seerumah", search bar komponen, link "pasang iklan sekarang" dan 3 icon lainya(artikel,favorite,hamburger menu).
-
-
-Tabel 3.11: Spesifikasi Container dan Layout Navigation Bar
-
-Property
-Value
-Sumber / Notes
-Width
-100% (full width)
-Frame property
-Height
-48px
-Fixed height
-Background
-#FFFFFF
-Fill
-PaddingHorizo ntal
-20px atau 24px (left/right)
-Auto layout padding
-Padding Vertical
-12px atau 16px (top/bottom)
-Auto layout padding
-
-Display
-Flex, Horizontal
-Auto layout
-Justify Content
-Space-between
-Logo	(left),	CTA	(center), Icons (right)
-Align Items
-Center
-Vertical alignment
-Position
-Sticky atau Fixed
-Sticky on scroll
-Z-index
-50 atau 100
-Above other content
-
-
-Tabel 3.12: Spesifikasi Typography Navigation Bar
-ElemenFon tSizeWeig ht Line HeightColorNotesBrand Name "seerumah"Po ppi ns18px atau 20px70024px atau 28px#1E293BBold, darkCTA Button TextPo ppi ns14px60020px#1E40AF
-atau #FFFFFFSemibold, primary or whiteMenu Items (if any)Po ppi ns14px50020px#64748BMedium, gray
-
-Tabel 3.13: Spesifikasi Colors Navigation Bar
-Token Name Hex CodeUsageRGB
-White#FFFFFFBackground, CTA text (if filled)rgb(255, 255,
-255)Primary-60 0#1957A0"Pasang iklan menu"rgb(30, 64, 175)
-
-
-
-Tabel 3.14:Spesifikasi Spacing Navigation Bar
-
-Elemen
-Property
-Value
-Notes
-Nav Container
-Padding Horizontal
-20px atau 24px
-Left and right
-Nav Container
-Padding Vertical
-12px atau 16px
-Top and bottom
-Nav Container
-Height
-56px atau 64px
-Fixed
-Logo Section
-Gap
-8px atau 12px
-Logo icon to text
-Logo Icon
-Size
-32px atau 36px
-Circle diameter
-Right	Icons Section
-Gap
-16px atau 20px
-Between icons
-Icon
-Size
-20px atau 24px
-User, Heart, Menu icons
-
-CTA Button
-Padding
-10px 20px atau 12px 24px
-Vertical	/
-Horizontal
-CTA Button
-Border Radius
-8px
-Medium rounded
-CTA Button
-Icon	to	Text Gap
-8px
-Icon to text
-CTA	Button Icon
-Size
-16px atau 20px
-Home icon
-
-
-Tabel 3.15: Spesifikasi Elements dan Effects Navigation Bar
-
-Property / Elemen
-   Value / Specification
-Notes / Details
-Logo Section
-Logo	Icon Background
-#1957A0 atau Gradient Primary color or gradient
-Logo Icon
-White atau Custom Icon inside circle
-Logo Icon Size
-18px atau 20px (inside 32-36px circle) Actual icon size
-Brand Text
-Weight
-700 (Bold) Prominent
-CTA	Button (Center)
-Button Background
-#1957A0 atau Outline Filled or outline style
-
-Button Text Color
-#FFFFFF atau #1957A0 White (filled) or Primary (outline)
-Button Border
-None atau 1px solid #1957A0 If outline style
-Button Icon
-Home icon (16-20px) From lucide-react
-Button	Hover Background
-darker atau shadow Interactive feedback
-Right Icons
-User Icon Color
-#64748B Gray-600
-Heart Icon Color
-#64748B Gray-600
-Menu Icon Color
-#64748B Gray-600
-Icon Hover
-Background
-#F1F5F9 circle Light gray circle on hover
-Icon Size
-20px atau 24px
-Consistent size
-Icon Clickable Area
-40px × 40px
-Padding for easier click
-Effects
-Navbar Shadow
-0	1px	3px	rgba(0,0,0,0.1)	Subtle elevation
-
-Sticky Behavior
-Position
-Sticks to top on scroll Position: sticky, top: 0
-Backdrop Blur
-blur(8px)	atau none
-Modern glass effect (optional)
-Transition
-all 0.2s ease-in-out
-Smooth hover effects
-4. Home Page (Halaman Utama) - Komponen utama halaman pertama
-
-
-[Gambar 3.6: Desain Figma - Home Page (Halaman Utama)]
-
-Deskripsi: Halaman ini dirancang sebagai halaman pertama yang diakses oleh pengguna, sehingga memuat berbagai informasi utama secara terstruktur dan mudah dinavigasi.
-
-Pada bagian paling atas terdapat navbar yang berfungsi sebagai elemen navigasi utama untuk mengakses berbagai halaman dalam sistem. Tepat di bawah navbar, terdapat section hero yang dilengkapi dengan fitur filtering searchbar, yang memungkinkan pengguna untuk melakukan pencarian properti berdasarkan kriteria tertentu secara cepat dan efisien.
-
-Selanjutnya, halaman ini menampilkan beberapa section konten utama yang disusun secara vertikal. Section pertama adalah "Properti Terpopuler" yang berisi kumpulan kartu properti (property card) yang paling diminati. Di bawahnya terdapat section "Rekomendasi Perumahan" yang menampilkan enam kartu perumahan dalam dua baris (masing-masing tiga kolom).
-
-Berikutnya, terdapat section "Rumah Secondary" yang menampilkan enam kartu properti dalam satu baris horizontal. Pola yang sama juga diterapkan pada section "Sewa Properti", yang menampilkan enam kartu properti dalam satu baris.
-
-Di bagian selanjutnya, terdapat banner testimonial yang menampilkan ulasan atau pengalaman pengguna sebagai bentuk peningkatan kepercayaan terhadap platform. Setelah itu, terdapat section "Tanah Potensial" yang menampilkan enam kartu properti dalam satu baris.
-
-Kemudian, halaman ini juga memuat section "Berita Terkini" yang berisi empat kartu berita dalam satu baris untuk memberikan informasi terbaru kepada pengguna. Di bawahnya terdapat banner testimonial kedua sebagai penguat kepercayaan pengguna.
-
-Pada bagian paling bawah halaman, terdapat footer yang berisi informasi tambahan seperti kontak, navigasi tambahan, serta informasi terkait lainnya yang dapat diakses oleh pengguna.
-
-Secara keseluruhan, desain halaman utama ini disusun secara sistematis dengan pembagian section yang jelas, sehingga memudahkan pengguna dalam menemukan informasi properti yang diinginkan.
-
-Tabel 3.16: Spesifikasi Container dan Layout HomePage Hero Section
-
-Property
-Value
-Sumber Figma
-Width
-343px (mobile), 360px (desktop)
-Frame property
-Height
-Auto
-Auto layout
-Background
-#FFFFFF
-Fill
-Border Radius
-12px
-Corner radius
-Shadow
-0px 1px 3px rgba(0,0,0,0.1)
-Drop shadow
-Shadow Hover
-0px 4px 12px rgba(0,0,0,0.15)
-Hover state
-Padding
-16px
-Auto layout padding
-Vertical Gap
-12px
-Auto layout gap
-
-Tabel 3.17: Spesifikasi Typography HomePage Hero Section
-ElemenFontSizeWeig ht Line HeightColorNotesMain HeadingInter40px (deskto p),70048px (desktop),#FFFFFFBold, white
-28px (mobile
-)36px (mobile)Sub HeadingInter32px (deskto p), 24px (mobile
-)70040px (desktop), 32px (mobile)#FDE047 atau #FBBF24Bold, yellowDescript ion TextInter14px atau 16px40020px atau 24px#FFFFFF atau rgba(255,255,255, 0.9)Regular, white/ligh tCategor y LabelInter12px50016px#64748B atau #1E293BMedium, dark
-
-
-Tabel 3.18: Spesifikasi Colors HomePage Hero Section
-Token NameHex CodeUsageRGBPrimary-5 00#2563EB atau #3B82F6Gradient start (top)rgb(37, 99, 235)Primary-4 00#60A5FAGradient end (bottom)rgb(96, 165, 250)Yellow-30 0#FDE047Sub heading textrgb(253, 224, 71)Yellow-40 0#FBBF24Alternative yellowrgb(251, 191, 36)White#FFFFFFMain heading, descriptionrgb(255, 255,
-255)White-90rgba(255,255,255,0
-.9)Description
-(semi-transparent)rgba(255,255,255
-,0.9)Gray-900#1E293BCategory labelsrgb(30, 41, 59)
-Tabel 3.19: Spesifikasi Spacing HomePage Hero Section
-ElemenPropertyValueNotesHero ContainerPadding Top80px - 120pxBelow navbarHero ContainerPadding Bottom60px - 80pxAbove next sectionHero ContainerPadding Horizontal40px (desktop), 20px (mobile)Left/rightHeading SectionMargin Bottom16pxBelow main headingSub HeadingMargin Bottom8pxBelow sub headingDescriptionMargin Bottom32px - 40pxBelow description, above searchSearch Filter BarMargin Bottom40px - 48pxBelow search, above categoriesCategory Icons SectionPadding24px - 32pxInternal paddingCategory IconsGap (horizontal)20px - 24pxBetween icon itemsCategory IconSize40px - 48px (icon circle)Icon containerCategory IconMargin Bottom8pxIcon to label
-Tabel 3.20: Spesifikasi Elements dan Effects HomePage Hero Section
-PropertyValueNotes
-Background Gradient DirectionTop to bottom (180deg)Vertical gradientGradient Start#2563EB atau #3B82F6Primary blueGradient End#60A5FA atau #93C5FDLighter blueBackground OverlayOptional image with opacityIf image usedHeading SectionMain Heading Alignment: CenterText align centerSub Heading Color#FDE047 (yellow)Eye-catchingDescription AlignmentCenterText align centerDescription Max Width600px - 700pxConstrained width for readabilityCategory IconsContainer Background: #FFFFFFWhite containerCategory IconsContainer Border Radius: 16px - 20pxLarge roundedCategory IconsContainer Shadow: 0 4px 12px rgba(0,0,0,0.1)ElevatedCategory IconsContainer Padding: 20px - 24pxInternal spacingIcon Circle Background#F1F5F9 atau #E2E8F0Light grayIcon Circle Size48px diameterFixed sizeIcon Size24pxInside circle
-Icon Color#2563EB atau #64748BPrimary or grayIcon HoverScale 1.05, shadow increaseInteractiveLabel Text AlignCenterBelow iconLabel Color#64748BGray-600Search Filter (Reference)See Tables 3.11-3.15Already documentedEffectsSection Transition: Fade in on loadSmooth entranceScroll BehaviorParallax or staticOptional effect
-5. Property Detail Page - Halaman detail properti
-
-
-[Gambar 3.7: Desain Figma - Property Detail Page]
-
-Deskripsi:	Halaman ini berfungsi untuk menampilkan informasi lengkap mengenai suatu properti yang dipilih atau diakses oleh pengguna.
-
-Pada bagian paling atas terdapat navbar yang berfungsi sebagai navigasi utama. Selanjutnya, pada section awal halaman ditampilkan galeri gambar properti dalam bentuk grid, yang memungkinkan pengguna untuk melihat berbagai sudut dan kondisi properti secara visual.
-
-Di bawah galeri gambar, terdapat informasi utama properti yang meliputi harga, lokasi, judul iklan, serta detail spesifikasi singkat seperti jumlah kamar tidur, kamar mandi, dan luas bangunan. Informasi ini disusun secara ringkas agar pengguna dapat dengan cepat memahami karakteristik utama properti.
-
-Berikutnya, terdapat section deskripsi properti yang menjelaskan detail lebih lengkap mengenai kondisi, keunggulan, serta informasi tambahan terkait properti tersebut. Setelah itu, halaman menampilkan beberapa section informasi lanjutan yang meliputi spesifikasi properti, informasi umum tentang properti, detail interior dan eksterior, fasilitas properti, serta fasilitas yang tersedia di lingkungan perumahan.
-
-Selanjutnya, terdapat section peta lokasi yang membantu pengguna mengetahui posisi geografis properti secara lebih jelas. Di bawahnya, disediakan section simulasi KPR yang memungkinkan pengguna untuk memperkirakan skema pembiayaan pembelian properti.
-
-Pada bagian berikutnya, ditampilkan section "Perumahan Populer" yang berisi rekomendasi properti lain yang relevan bagi pengguna. Terakhir, pada bagian paling bawah halaman terdapat footer yang memuat informasi tambahan seperti kontak, navigasi, dan informasi pendukung lainnya.
-
-Secara keseluruhan, halaman detail properti ini dirancang untuk memberikan informasi yang komprehensif dan terstruktur, sehingga membantu pengguna dalam memahami detail properti secara menyeluruh sebelum mengambil keputusan.
-
-
-Tabel 3.21: Spesifikasi Container dan Layout Property Detail Page
-
-Property
-Value
-Sumber Figma / Notes
-Page Container Width
-100%
-Frame property
-Max Width
-1440px, centered
-Container constraint
-
-Background
-#FFFFFF	atau #F8FAFC
-Fill
-Padding Horizontal
-40px (desktop), 20px (mobile)
-Auto layout padding
-Image	Gallery Section Height
-400px - 500px
-Fixed or auto
-Gap	(main	& thumbnails)
-16px
-Auto layout gap
-Main Image Width
-66%	(2/3	of container)
-Layout
-Thumbnails Width
-33%	(1/3	of container)
-Layout
-Image Border Radius
-12px - 16px
-Corner radius
-Content	Layout (Desktop)
-Flex, Horizontal
-Two column
-Left Column Width
-65% - 70%
-Main content
-Right Sidebar Width
-30% - 35%
-Sticky sidebar
-Gap (between columns)
-32px - 40px
-Horizontal gap
-
-Section Padding
-24px - 32px
-Internal padding
-Section Border Radius
-12px - 16px
-Rounded
-Section Background
-#FFFFFF
-White cards
-Section Margin Bottom
-24px
-Between sections
-Section Border
-1px	solid	#E2E8F0 atau none
-Light border
-Section Shadow
-0	1px	3px rgba(0,0,0,0.1) atau none
-Subtle elevation
-
-
-Tabel 3.22: Spesifikasi Typography Property Detail Page
-ElemenFontSizeWeig ht Line HeightColorNotesPriceInter24px - 28px70032px - 36px#1E40 AFBold, primary blueProperty TitleInter20px - 24px70028px - 32px#1E29 3BBold, darkLocationInter14px40020px#64748
-BRegular, with iconSection HeadingInter18px - 20px70024px - 28px#1E29 3BBold
-Body TextInter14px40022px#64748
-BRegular, readableLabel / KeyInter14px60020px#1E29 3BSemiboldValueInter14px40020px#64748
-BRegularQuick Info NumbersInter16px - 18px60024px#1E29 3BProminentQuick Info LabelInter12px40016px#64748
-BSmallAgent NameInter16px60022px#1E29 3BSemiboldAgent DetailInter12px40016px#64748
-BSmallButton TextInter14px60020px#FFFF FFSemibold, white
-
-Tabel 3.23: Spesifikasi Colors Property Detail Page
-Token NameHex CodeUsageRGBPrimary-600#1E40AFPrice, primary buttonsrgb(30, 64, 175)Primary-500#3B82F6Alternative buttonrgb(59, 130, 246)Gray-900#1E293BHeadings, labels, property titlergb(30, 41, 59)Gray-600#64748BBody text, values, locationrgb(100, 116, 139)Gray-200#E2E8F0Borders, dividersrgb(226, 232, 240)Gray-100#F1F5F9Section backgroundsrgb(241, 245, 249)Gray-50#F8FAFCPage backgroundrgb(248, 250, 252)
-White#FFFFFFCard backgrounds, buttonsrgb(255, 255, 255)Yellow-400#FBBF24Warning / notice backgroundsrgb(251, 191, 36)Yellow-50#FFFBEBNotice background lightrgb(255, 251, 235)
-
-
-
-Tabel 3.24: Spesifikasi Spacing Property Detail Page
-ElemenPropertyValueNotesPage ContainerPadding Horizontal40px (desktop), 20px (mobile)Left/rightPage ContainerPadding Vertical32px - 40pxTop/bottomImage GalleryMargin Bottom32px - 40pxBelow galleryImage GalleryGap16pxMain to thumbnailsThumbnailGap (vertical)16pxBetween thumbnailsContent ColumnsGap32px - 40pxLeft to rightContent SectionsPadding24px - 32pxInternalContent SectionsMargin Bottom24pxBetween sectionsContent SectionsBorder Radius12px - 16pxRounded cornersPrice SectionMargin Bottom16pxBelow priceTitle SectionMargin Bottom8pxBelow title
-LocationMargin Bottom16pxBelow locationQuick Info ContainerPadding16px - 20pxInternalQuick Info ContainerGap24px - 32pxBetween itemsQuick Info ContainerMargin Bottom24pxBelow quick infoSection HeadingMargin Bottom16pxBelow headingTable RowPadding Vertical12px - 16pxTop/bottomTable RowBorder Bottom1px solid #E2E8F0SeparatorAgent CardPadding20px - 24pxInternalAgent CardBorder Radius12pxRoundedAgent CardMargin Bottom16pxBelow cardButtonPadding12px 24pxVertical & horizontalButtonBorder Radius8pxRoundedButtonMargin Bottom12pxBetween buttonsMap ContainerHeight300px - 400pxFixedMap ContainerBorder Radius12pxRoundedMap ContainerMargin Bottom24pxBelow mapKPR SimulatorPadding24pxInternal
-KPR SimulatorBorder Radius12pxRounded
-
-
-
-Tabel 3.25: Spesifikasi Elements dan Effects Property Detail Page
-PropertyValueNotesMain Image Aspect Ratio16:9 atau 4:3Consistent ratioMain Image Object FitCoverFill containerThumbnail Aspect Ratio4:3 atau 1:1Square/standardThumbnail Object FitCoverFill containerImage HoverOpacity 0.9 / cursor pointerInteractiveBed IconLucide icon, 20pxBedroomBath Icon20pxBathroomArea IconMaximize2, 20pxLand/building sizeIcon Color#64748BGray-600Avatar Size48px - 56pxCircleAvatar Border2px solid #E2E8F0Light borderAgent Name Color#1E293BDarkAgent Detail Color#64748BGrayBadge Background#DBEAFE atau #E0E7FFLight blueBadge Text Color#1E40AFPrimary
-Badge Padding4px 8pxSmallBadge Border Radius4pxRoundedPrimary Button Background#FBBF24CTA utamaPrimary Button Text#FFFFFFWhitePrimary Button HoverDarker yellowInteractiveSecondary Button Background#FFFFFFWhatsApp buttonSecondary Button Border1px solid #1E40AFPrimary borderSecondary Button Text#1E40AFPrimary blueSecondary Button HoverLight blue backgroundInteractiveSection Background#FFFFFFWhite cardsSection Border1px solid #E2E8F0 atau noneLightSection Shadow0 1px 3px rgba(0,0,0,0.1) atau noneSubtleTable Row Border1px solid #E2E8F0Bottom borderRow Padding12px - 16pxVertical spacingKey Column Width40% - 50%LeftValue Column Width50% - 60%RightMap Height300px - 400pxFixedMap Border Radius12pxRounded
-Sidebar Stickyposition: sticky, top: 80pxFollows scrollLightboxModal on clickFullscreenButton Hover EffectScale 1.02SubtleCard HoverShadow increaseDepth effectTransitionall 0.2s ease-in-outSmooth
-
-Setiap komponen akan diimplementasikan menggunakan ketiga variasi prompt
-untuk memastikan konsistensi dalam perbandingan.
-
-3.3 Perancangan Variasi Prompt
-Penelitian ini menggunakan tiga variasi prompt yang mencerminkan berbagai tingkat detail instruksi yang biasa digunakan frontend developer saat bekerja dengan AI-assisted tools.
-
-3.3.1 Prompt Sederhana
-
-Prompt sederhana berisi instruksi dasar yang mensimulasikan proses pembuatan kode cepat (quick generation). Karakteristik dari variasi ini adalah penggunaan instruksi yang singkat dan umum tanpa mencantumkan spesifikasi teknis yang detail. Pada jenis ini, tidak disertakan referensi langsung ke desain Figma maupun konteks struktur proyek secara menyeluruh.
-
-Ketiga variasi prompt ini dapat dipandang sebagai bentuk implementasi dari pendekatan prompt patterns dalam prompt engineering
-
-Contoh:
-
-[Gambar 3.8: Prompt Sederhana]
-
-
-
-3.3.2 Prompt Terstruktur
-
-Prompt terstruktur dirancang dengan instruksi detail yang memuat spesifikasi teknis dan visual mengacu pada desain Figma. Variasi ini mencerminkan cara pengembang memberikan instruksi spesifik (detailed specification). Karakteristik utamanya meliputi instruksi terperinci mengenai elemen visual dari desain Figma, penjelasan fungsionalitas yang diharapkan, serta pencantuman teknologi yang digunakan yaitu Next.js dan Tailwind CSS. Namun, jenis prompt ini belum menyertakan konteks proyek secara menyeluruh.
-
-Contoh:
-
-[Gambar 3.9: Prompt Struktural]
-
-3.3.3 Prompt Kontekstual
-
-Prompt kontekstual memuat instruksi lengkap yang mengintegrasikan konteks proyek "Seerumah", referensi desain Figma, dan struktur proyek yang sudah ada. Karakteristik variasi ini mensimulasikan implementasi siap produksi (production-ready implementation) dengan instruksi yang sangat detail. Hal ini mencakup pencantuman teknologi, struktur folder, standar tim, referensi spesifik ke layer atau frame Figma, serta penjelasan integrasi dengan komponen dan sistem lain. Selain itu, prompt ini juga menyertakan aturan best practice, standar pengkodean tim, serta contoh data atau props yang relevan dengan proyek.
-
-Contoh:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-63
-
-[Gambar 3.10: Prompt Kontekstual]
-
-3.4 Proses Implementasi
-
-3.4.1 Workflow frontend Developer dengan AI
-
-Penelitian ini mensimulasikan workflow nyata frontend developer yang menggunakan AI-assisted tools dalam proses implementasi desain dari tim UI/UX.
-
-
-[Gambar 3.11: Workflow Developer dengan Cursor AI]
-
-3.4.2 Tahapan Implementasi per Komponen
-
-Untuk setiap komponen yang diuji, dilakukan tahapan sebagai berikut:
-
-
-
-
-
-
-
-[Gambar 3.12: Flowchart Implementasi per Komponen]
-
-
-
-3.4.3 Pengaturan Cursor AI Pro
-
-Setiap prompt dijalankan pada Cursor AI Pro dengan konfigurasi yang konsisten. Model AI diatur pada Mode Auto yang memungkinkan sistem memilih model paling sesuai (seperti Composer 1, Opus 4.5, atau Claude Sonnet 4.5) berdasarkan kompleksitas tugas. Context window diatur untuk menyertakan struktur folder proyek "Seerumah". Pengaturan lainnya meliputi pengaktifan fitur auto-save, code suggestions, dan multi-file editing untuk mendukung alur kerja pengembangan.
-
-3.4.4 Skenario Implementasi
-
-Untuk menjaga konsistensi penelitian, skenario implementasi dilakukan dengan ketentuan bahwa setiap variasi prompt dijalankan pada lingkungan pengembangan (environment) yang sama. Peneliti memastikan tidak ada penyuntingan manual pada kode hasil AI di tahap awal agar output murni dapat dievaluasi. Seluruh interaksi dengan AI, termasuk jumlah iterasi dan permintaan perbaikan (refinement), didokumentasikan secara rinci beserta tangkapan layar (screenshot) pada setiap tahap. Selain itu, rincian waktu pengerjaan dicatat dengan pembagian
-
-menjadi tiga segmen spesifik, yaitu: (a) Waktu penyusunan prompt (Prompt Crafting), (b) Waktu generasi AI, dan (c) Waktu perbaikan atau debugging manual.
-
-
-
-3.5 Metode Evaluasi
-
-3.5.1 Evaluasi Kesesuaian Visual dengan Desain UI/UX
-
-Sebagai frontend developer, evaluasi utama adalah seberapa akurat kode yang dihasilkan AI dapat mereproduksi desain dari tim UI/UX. Evaluasi dilakukan dengan membandingkan hasil render kode dengan desain Figma.
-
-Tabel 3.26: Aspek Evaluasi Kesesuaian Visual
-
-No
-Aspek
-Kriteria Penilaian
-Sumber Acuan
-1
-Layout	& Spacing
-Padding,	margin,	gap	sesuai Figma spec
-Design	tokens Figma
-2
-Typography
-Font	family,	size,	weight, line-height
-Text styles Figma
-3
-Color Scheme
-Warna background, text, border, states
-Color palette Figma
-4
-Visual Elements
-Icon,	image,	illustration placement
-Assets	&
-components Figma
-5
-Component States
-Normal, hover, active, disabled states
-Interactive components Figma
-6
-Responsiven ess
-Breakpoint	behavior mobile/tablet/desktop
-Responsive frames Figma
-
-7
-Pixel Accuracy/D esign Token Compliance
-Ketepatan	ukuran	dan	posisi elemen
-Inspect mode Figma
-Metode pengukuran dilakukan menggunakan teknik perbandingan berdampingan (side-by-side comparison) antara desain Figma dan hasil render kode, serta teknik overlay menggunakan tangkapan layar. Pengujian responsivitas dilakukan pada breakpoint 375px (seluler), 768px (tablet), dan 1440px (desktop). Selain itu, dilakukan inspeksi menggunakan DevTools untuk mengukur nilai aktual dibandingkan spesifikasi Figma dan identifikasi regresi visual. Alat yang digunakan meliputi Chrome DevTools untuk inspeksi, Figma Inspect Mode untuk melihat spesifikasi, ekstensi Pixel Perfect untuk perbandingan overlay, serta alat tangkapan layar untuk dokumentasi.
-
-3.5.2 Evaluasi Struktur Kode dengan Best Practice
-
-Sebagai frontend developer, kualitas kode sangat penting untuk maintainability dan kolaborasi tim. Evaluasi dilakukan berdasarkan best practice dan standar yang diterapkan di tim Seerumah.
-
-Tabel 3.27: Aspek Evaluasi Struktur Kode
-
-No
-Aspek
-Kriteria Penilaian
-Standar Acuan
-
-1
-Code Organization
-Struktur	file,	folder,	naming convention
-Standar tim + Next.js conventions
-2Component StructureProps	interface,	composition, reusability
-React best practices
-
-3
-
-TypeScript Usage
-Type safety, interface, proper typing
-
-TypeScript strict mode
-4
-Tailwind Implementation
-Utility-first, responsive classes, consistency
-Tailwind best practices
-
-5
-
-Modularitas
-Pemisahan	komponen,	single responsibility
-React	component patterns
-
-
-6
-
-Konsistensi
-Konsistensi format dan pattern di seluruh kode
-
-Project coding standards
-Metode pengukuran struktur kode dibagi menjadi tiga pendekatan. Pertama, tinjauan kode manual (manual code review) dilakukan dengan memeriksa kepatuhan terhadap daftar periksa best practice, struktur pola, dan identifikasi code smell. Kedua, analisis kualitas kode (code quality analysis) mencakup evaluasi kompleksitas kode, organisasi folder, penamaan variabel, serta konsistensi format. Ketiga, pengujian fungsional (functional testing) dilakukan untuk memastikan komponen berjalan tanpa error, responsif di berbagai ukuran layar, dan elemen interaktif berfungsi sesuai kebutuhan fungsional.
-
-Untuk memitigasi subjektivitas peneliti dalam penilaian kualitas kode, evaluasi struktur kode tidak hanya mengandalkan tinjauan manual, tetapi juga divalidasi menggunakan alat analisis statis otomatis (Static Analysis Tools) dengan parameter biner (Lulus/Gagal). Alat yang digunakan meliputi:
-
-1. ESLint (Strict Config): Kode dianggap valid hanya jika 0 error dan 0 warning berdasarkan aturan standar Next.js Core Web Vitals.
-2. TypeScript Compiler (TSC): Kode wajib lolos kompilasi dalam mode strict: true tanpa penggunaan tipe data any secara implisit. Penggunaan alat otomatis ini berfungsi sebagai validator objektif untuk mendampingi penilaian kualitatif manual."
-
-
-
-3.6 Metode Analisis Komparatif
-
-3.6.1 Framework Analisis
-
-Analisis dilakukan dengan membandingkan tiga aspek utama:
-
-
-[Gambar 3.13: Framework Analisis Komparatif]
-
-3.6.2 Analisis Kualitatif
-
-Analisis kualitatif diawali dengan menyusun perbandingan tabulasi secara komprehensif untuk setiap komponen yang diuji. Peneliti membuat tabel perbandingan yang memetakan hasil dari tiga variasi prompt (sederhana, terstruktur, dan kontekstual) secara berdampingan. Tabel ini berfungsi untuk mendokumentasikan temuan pada aspek akurasi visual, kualitas kode (code quality), hasil pengujian fungsional (functional testing), serta pengalaman pengembang (developer experience). Format tabel yang digunakan disajikan pada Tabel 3.3.
-
-Tabel 3.3 dirancang sebagai lembar kerja untuk mendokumentasikan temuan eksperimen secara sistematis dengan pedoman penilaian terukur. Pada aspek Visual Accuracy (Akurasi Visual), penilaian diklasifikasikan ke dalam tiga kategori: kategori 'High' diberikan apabila deviasi visual sangat minim (< 5%) dan tidak mengganggu estetika; kategori 'Medium' mencakup deviasi terlihat jelas (5-20%) seperti kesalahan perataan (alignment); sedangkan kategori 'Low' menandakan kesalahan visual mayor (> 20%) atau kerusakan tata letak (broken layout).
-
-Selanjutnya, pada aspek Code Quality (Kualitas Kode), kolom catatan diisi dengan deskripsi kualitatif temuan teknis serta dilengkapi skor indikatif berskala 1 hingga 5 untuk mempermudah rekapitulasi. Pada indikator Functional Testing, penilaian didasarkan pada status operasional: 'Error' (gagal dimuat), 'Partial' (fitur interaktif tidak merespons), atau 'Berfungsi' (sesuai spesifikasi). Terakhir, aspek Developer Experience didokumentasikan dengan mencatat jumlah iterasi riil (angka numerik) yang dibutuhkan hingga kode dianggap layak, yang nantinya akan dikonversi menjadi skor efisiensi pada matriks final.
-
-
-
-
-Tabel 3.28: Template Tabel Perbandingan per Komponen
-
-Aspek
-Prompt
-Sederhana
-Prompt
-Terstruktur
-Prompt
-Kontekstual
-Visual Accuracy
-
--	Match	dengan
-Figma
-? Low
-? Med
-? High
-? Low
-? Med
-? High
-? Low
-? Med
-? High
-- Deviasi signifikan
-[List deviasi]
-[List deviasi]
-[List deviasi]
-Code Quality
--	Best	practice adherence
-[Score/Notes]
-[Score/Notes]
-[Score/Notes]
-- TypeScript quality
-[Score/Notes]
-[Score/Notes]
-[Score/Notes]
-- Maintainability
-[Score/Notes]
-[Score/Notes]
-[Score/Notes]
-Functional Testing
--	Komponen berfungsi
-? Error ? Partial
-? Berfungsi
-? Error ? Partial
-? Berfungsi
-? Error ? Partial
-? Berfungsi
--	Interactive elements
-? Error ? Partial
-? Berfungsi
-? Error ? Partial
-? Berfungsi
-? Error ? Partial
-? Berfungsi
-Developer Experience
--	Jumlah
-iterasi/revisi
-[Score/Notes]
-[Score/Notes]
-[Score/Notes]
-- Ease of Use
-[Score/Notes]
-[Score/Notes]
-[Score/Notes]
-Setelah data tabulasi terkumpul, tahap selanjutnya adalah identifikasi pola yang konsisten muncul (pattern recognition) pada tiga aspek utama. Aspek tersebut meliputi pola visual untuk melihat elemen desain yang paling terpengaruh oleh variasi prompt, pola struktural untuk meninjau perbedaan gaya penulisan kode, serta pola alur kerja (workflow) yang menyoroti efisiensi dan pengalaman pengembang saat menggunakan setiap jenis prompt.
-
-Selain identifikasi pola, peneliti melakukan kategorisasi deviasi atau penyimpangan hasil implementasi terhadap desain Figma. Deviasi dikelompokkan menjadi tiga tingkat keparahan. Kategori Critical diberikan untuk perbedaan yang mengubah makna atau fungsi komponen, seperti hilangnya data field penting. Kategori Major mencakup perbedaan visual yang signifikan, misalnya kesalahan pada jarak (spacing) atau warna yang sangat mencolok. Sedangkan kategori Minor mencakup perbedaan kecil yang tidak mengganggu fungsionalitas, seperti selisih ukuran sebesar 2 piksel.
-
-Terakhir, analisis dilakukan dari perspektif frontend developer untuk menilai pengalaman pengembangan secara menyeluruh. Indikator utama yang digunakan adalah iteration count, yaitu perhitungan jumlah iterasi atau perbaikan yang diperlukan hingga kode hasil generasi AI dianggap layak dan sesuai dengan standar yang diharapkan.
-
-
-
-
-3.6.3 Matriks Komparasi Final
-
-Meskipun analisis utama dalam penelitian ini bersifat kualitatif deskriptif, tahapan komparasi akhir memerlukan instrumentasi terukur untuk memvisualisasikan perbedaan performa antar-variabel prompt secara lebih tegas. Oleh karena itu, penelitian ini menerapkan teknik kuantifikasi data kualitatif, di mana hasil observasi mendalam dan expert judgment dikonversi menjadi data ordinal. Penting untuk dicatat bahwa penggunaan skor ini tidak bertujuan untuk mengubah jenis penelitian menjadi kuantitatif statistik, melainkan berfungsi sebagai alat bantu komparasi untuk melihat pola efektivitas dari masing-masing jenis prompt.
-
-Untuk mengoperasionalisasikan penilaian tersebut, ditetapkan sistem pembobotan skor menggunakan Skala Likert 5 poin. Setiap indikator dalam matriks komparasi dinilai berdasarkan kriteria berikut:
-
-1. Skor 1 (Sangat Buruk): Hasil kode mengalami kegagalan fungsi fatal (critical error), struktur kode berantakan (spaghetti code), atau tampilan visual menyimpang jauh dari desain.
-2. Skor 2 (Buruk): Terdapat deviasi visual mayor atau code smell signifikan yang memerlukan refactoring berat.
-3. Skor 3 (Cukup): Hasil fungsional dan visual dapat diterima (akseptabel), namun memerlukan beberapa revisi minor.
-4. Skor 4 (Baik): Hasil memenuhi standar best practice dan visual desain dengan sangat sedikit penyesuaian.
-5. Skor 5 (Sangat Baik): Hasil sempurna (pixel-perfect), struktur kode efisien, dan tidak memerlukan revisi manual sama sekali (0 iterasi).
-
-Rekapitulasi nilai dari seluruh komponen pengujian kemudian dikalkulasi menggunakan rata-rata tertimbang (weighted average) untuk mendapatkan skor akhir, sebagaimana disajikan pada Tabel 3.4 berikut.
-
-
-
-
-
-Tabel 3.29: Matriks Komparasi Final
-Kriteria EvaluasiBobotPrompt
-SederhanaPrompt
-TerstrukturPrompt
-KontekstualAkurasi Visual30%Match	dengan Figma????? (2)????? (4)????? (5)Konsistensi design token????? (1)????? (3)????? (5)Rata-rata Sub-kriteria1.53.55.0Kualitas Kode35%Best practice????? (2)????? (3)????? (5)TypeScript quality????? (1)????? (4)????? (5)
-Maintainability????? (1)????? (4)????? (5)Rata-rata Sub-kriteria1.63.65.0Efisiensi Developer35%Efesiensi iterasi
-
-(Semakin tinggi = sedikit revisi)????? (2)????? (3)????? (5)Ease of use
-
-(Semakin tinggi = mudah dipakai)????? (1)????? (3)????? (5)Rata-rata Sub-kriteria1.53.05.0TOTAL SCORE100%1.533.365.00
-
-
-Berdasarkan Tabel 3.4 di atas, penilaian akhir dilakukan secara kuantitatif menggunakan metode pembobotan (weighted scoring). Setiap kriteria dievaluasi menggunakan Skala 1 sampai 5, di mana nilai 1 merepresentasikan kualitas terendah (Sangat Buruk/Tidak Efisien) dan nilai 5 merepresentasikan kualitas tertinggi (Sangat Baik/Sangat Efisien).
-
-Nilai pada setiap sub-kriteria (misalnya: Match dengan Figma atau Ease of use) merupakan nilai rata-rata yang ditarik dari hasil pengujian terperinci pada Tabel
-3.3 sebelumnya. Untuk mendapatkan Total Score, digunakan rumus rata-rata tertimbang sesuai bobot prioritas penelitian sebagai berikut:
-
-???????????????????? = (???????? - ????????????????????×0, 30) + (???????? - ????????????????????????????????×0, 35) + (???????? - ??????????????????????????×0, 35)
-
-Penggunaan bobot 35% pada aspek Kualitas Kode dan Efisiensi Developer merefleksikan fokus utama penelitian ini, yaitu mencari solusi yang tidak hanya akurat secara visual, tetapi juga efisien dan maintainable untuk pengembangan perangkat lunak jangka panjang.
-
-3.6.4 Analisis Trade-off
-
-Untuk menghindari bias dalam pengukuran efisiensi, variabel 'Waktu Pengerjaan' didefinisikan sebagai akumulasi dari tiga fase kerja: (1) Waktu Penyusunan Prompt (Prompt Crafting Time), yaitu durasi yang dibutuhkan peneliti untuk merancang dan mengetik instruksi; (2) Waktu Generasi (Generation Time), yaitu durasi tunggu hingga Cursor AI selesai menghasilkan kode; dan (3) Waktu Perbaikan (Debugging/Refinement Time), yaitu durasi yang dibutuhkan untuk memperbaiki error atau menyesuaikan hasil agar sesuai desain. Analisis trade-off akan membandingkan apakah investasi waktu yang besar di awal (saat menyusun Prompt Kontekstual) sebanding dengan minimnya waktu perbaikan di akhir, dibandingkan dengan Prompt Sederhana yang cepat dibuat namun berpotensi membutuhkan waktu debugging yang lama.
-
-3.7 Tools dan Environment
-
-Pada penelitian ini digunakan berbagai tools dan environment pengembangan untuk mendukung proses implementasi, pengujian, serta evaluasi antarmuka pengguna. Penggunaan tools tersebut disesuaikan dengan kebutuhan pengembangan frontend pada proyek Seerumah.
-
-3.7.1 Development Environment
-
-Development environment digunakan sebagai lingkungan utama dalam proses pengembangan sistem. Lingkungan ini mencakup perangkat lunak pendukung penulisan kode, pengelolaan versi, serta runtime environment yang digunakan selama penelitian. Rincian development environment yang digunakan disajikan pada Tabel 3.5.
-Tabel 3.30: Tabel Development Environment
-
-Kategori
-Tools / Technology
-Versi / Spesifikasi
-
-IDE
-Cursor AI Pro
-v2.1.36 (Auto Mode)
-Version Control
-Git & GitHub
-Latest version
-Package Manager
-npm
-Latest version
-Runtime Environment
-Node.js
-v22.12.0+
-Browser
-Google Chrome, Microsoft Edge
-Latest version
-
-
-
-3.7.2 Design Tools
-
-Design tools digunakan sebagai acuan utama dalam proses implementasi antarmuka pengguna. Alat-alat ini membantu peneliti dalam memahami spesifikasi desain, mengambil aset visual, serta melakukan perbandingan antara desain dan hasil implementasi. Rincian design tools yang digunakan disajikan pada Tabel 3.6.
-Tabel 3.31: Tabel Design tools
-
-Kategori
-Tools
-Fungsi
-
-Design Reference
-Figma
-Akses desain dari tim UI/UX Seerumah
-Design Spec Extraction
-Figma Inspect Plugin
-Mengambil detail ukuran, warna, dan spacing
-Screenshot
-Chrome DevTools, Figma Export
-Dokumentasi visual
-Visual Comparison
-Pixel Perfect Extension, Manual Overlay
-Membandingkan desain dan hasil implementasi
-
-
-
-3.7.3 Code Quality & Testing Tools
-
-Code quality and testing tools digunakan untuk menjaga kualitas kode serta memastikan konsistensi penulisan selama proses pengembangan. Penggunaan alat ini membantu meminimalkan kesalahan sintaks dan meningkatkan keterbacaan kode. Rincian alat yang digunakan disajikan pada Tabel 3.7.
-Tabel 3.32: Tabel Code Quality & Testing Tools
-
-Tools
-Fungsi
-Konfigurasi
-ESLint
-Linting kode
-Konfigurasi Next.js
-
-Prettier
-Format kode
-Default configuration
-TypeScript
-Type checking
-Strict mode
-
-
-
-3.7.4 Tech Stack Proyek Seerumah
-
-Tech stack yang digunakan dalam proyek Seerumah disesuaikan dengan kebutuhan pengembangan frontend modern. Pemilihan teknologi mempertimbangkan aspek performa, skalabilitas, serta kemudahan pemeliharaan. Rincian tech stack yang digunakan disajikan pada Tabel 3.8.
-Tabel 3.33: Tabel Tech Stack Proyek Seerumah
-
-Kategori
-Technology
-Versi / Detail
-Framework
-Next.js
-v14 (App Router)
-Programming Language
-TypeScript
-v5.x (strict mode)
-Styling
-Tailwind CSS
-v3.x (utility-first)
-UI Components
-Headless UI
-Komponen	dasar	yang accessible
-
-Icons
-Lucide	React,	React Icons
-Library ikon
-Form Handling
-React useState
-Validasi manual
-Notifications
-React Hot Toast
-Feedback kepada pengguna
-
-
-
-3.7.5 Documentation Tools
-
-Documentation tools digunakan untuk mencatat seluruh proses penelitian, mulai dari implementasi hingga evaluasi. Dokumentasi ini berfungsi sebagai bukti pendukung serta membantu peneliti dalam melakukan analisis dan pelaporan hasil penelitian. Rincian alat dokumentasi disajikan pada Tabel 3.9.
-
-
-Tabel 3.34: Tabel Documentation Tools
-
-Kategori
-Tools
-Fungsi
-Visual Documentation
-Screenshot, Screen Recording
-Merekam proses implementasi
-Note Taking
-Google Docs
-Mencatat observasi dan temuan penelitian
-Version Control
-Git
-Tracking perubahan kode
-3.8 Dokumentasi dan Pelaporan
-
-Dokumentasi dan pelaporan dalam penelitian ini dilakukan secara terstruktur untuk memastikan seluruh proses pengembangan dan evaluasi dapat dipahami serta dipertanggungjawabkan. Peneliti berperan sebagai frontend developer yang mengimplementasikan desain antarmuka sekaligus melakukan pencatatan terhadap setiap tahapan penelitian, mulai dari penerimaan desain hingga evaluasi hasil implementasi.
-
-Dokumentasi desain diperoleh dari tim UI/UX melalui berkas desain yang diakses menggunakan platform Figma. Dokumen desain tersebut mencakup tampilan antarmuka utama yang menjadi acuan pengembangan, serta informasi pendukung berupa design tokens seperti warna, tipografi, dan pengaturan jarak antar elemen. Aset visual yang digunakan dalam pengembangan, seperti ikon dan gambar, juga disertakan sebagai bagian dari dokumentasi desain.
-
-Dokumentasi prompt dilakukan untuk setiap variasi dan komponen yang dikembangkan dengan bantuan Cursor AI Pro. Setiap prompt yang digunakan dicatat secara lengkap untuk menunjukkan instruksi yang diberikan kepada sistem artificial intelligence. Proses interaksi dengan AI didokumentasikan melalui tangkapan layar dan catatan percakapan. Selain itu, waktu pengerjaan serta jumlah iterasi hingga diperoleh hasil yang dinilai layak digunakan dicatat sebagai bahan evaluasi.
-
-Dokumentasi kode dilakukan dengan menyimpan source code dari setiap variasi implementasi yang dihasilkan. Kode tersebut disimpan menggunakan sistem version control sehingga perubahan selama proses pengembangan dapat ditelusuri dengan jelas. Pendekatan ini membantu menjaga konsistensi implementasi dan memudahkan proses peninjauan ulang.
-
-Dokumentasi visual dilakukan dengan mengambil tangkapan layar hasil implementasi antarmuka pada berbagai ukuran layar, yaitu perangkat mobile, tablet, dan desktop. Hasil implementasi dibandingkan dengan desain awal dari Figma untuk menilai kesesuaian tampilan. Tangkapan layar yang telah diberi penjelasan digunakan untuk menunjukkan perbedaan atau deviasi yang ditemukan, serta perekaman layar dilakukan untuk mendokumentasikan kondisi interaktif pada antarmuka.
-
-Dokumentasi evaluasi dilakukan berdasarkan kriteria evaluasi visual yang telah ditetapkan sebelumnya. Hasil peninjauan kode dicatat untuk setiap aspek yang dievaluasi, termasuk kesesuaian tampilan dan struktur implementasi. Tabel perbandingan yang telah disusun diisi sesuai dengan hasil evaluasi masing-masing komponen,yang mencakup data kualitatif serta konversi skor numerik sesuai kriteria yang ditetapkan. Selain itu, catatan observasi kualitatif selama proses
-
-evaluasi	dirangkum	untuk	memberikan	gambaran	umum	terhadap	hasil implementasi dan variasi prompt yang digunakan.
-
-
-BAB IV
-HASIL DAN PEMBAHASAN
-
-
-4.1 Pelaksanaan Penelitian
-Bab ini membahas hasil pelaksanaan penelitian yang dilakukan sesuai dengan metodologi yang telah dijelaskan pada Bab III. Penelitian dimulai dari tahap setup environment pengembangan hingga implementasi dan evaluasi komponen frontend menggunakan tiga variasi prompt yang berbeda. Setiap tahap didokumentasikan secara sistematis untuk memastikan reproducibility dan transparansi penelitian.
-
-4.2 Setup Environment Pengembangan
-4.2.1 Inisialisasi Proyek
-
-Tahap pertama dalam pelaksanaan penelitian adalah melakukan setup environment pengembangan yang sesuai dengan tech stack proyek Seerumah. Proses ini dimulai dengan inisialisasi proyek Next.js menggunakan command create-next-app dengan konfigurasi default yang mencakup TypeScript, Tailwind CSS, dan ESLint.
-Gambar 4.1: Proses Inisialisasi Proyek Next.js [Screenshot terminal showing: npx create-next-app@latest command dan output sukses]
-
-Proses inisialisasi berjalan dengan lancar tanpa error. Sistem berhasil menginstal 143 packages yang diperlukan tanpa ditemukan vulnerability pada dependencies yang terinstal. TypeScript types untuk Next.js dan library terkait berhasil
-di-generate secara otomatis oleh sistem, yang memungkinkan type checking dan intellisense berfungsi dengan baik sejak awal. Struktur folder Next.js versi 14 dengan arsitektur App Router berhasil dibuat sesuai dengan konvensi terbaru dari framework. Konfigurasi Tailwind CSS juga terintegrasi dengan baik ke dalam proyek, terlihat dari file tailwind.config.js dan globals.css yang sudah terkonfigurasi dengan benar.
-Gambar 4.2: Struktur Folder Proyek Awal [Screenshot struktur folder: app/, components/, public/, dll]
-
-4.2.2 Konfigurasi Version Control
-
-Setelah proyek berhasil dibuat, langkah selanjutnya adalah mengintegrasikan dengan Git untuk version control. Repository Git diinisialisasi untuk mendokumentasikan setiap perubahan kode dan mengisolasi hasil eksperimen dari masing-masing variasi prompt. Penggunaan version control ini penting untuk memastikan setiap implementasi dapat dilacak dengan jelas dan dibandingkan secara objektif.
-
-
-Gambar 4.3: Git Repository Setup [Screenshot Git initialization atau GitHub repository]
-
-Strategi branching yang diterapkan dalam penelitian ini menggunakan pendekatan isolasi penuh untuk setiap variasi prompt. Branch main digunakan sebagai baseline proyek yang berisi setup awal tanpa implementasi komponen. Branch research/prompt-simple dibuat khusus untuk menyimpan hasil implementasi menggunakan prompt sederhana. Branch
-research/prompt-structured digunakan untuk implementasi dengan prompt terstruktur. Sementara branch research/prompt-contextual digunakan untuk implementasi dengan prompt kontekstual. Pemisahan branch ini memastikan bahwa setiap variasi prompt dapat dievaluasi secara independen tanpa interferensi dari implementasi lainnya.
-
-4.2.3 Setup Cursor AI Pro
-
-Cursor AI Pro versi 2.1.36 digunakan sebagai IDE utama dalam penelitian ini. Platform ini dipilih karena kemampuannya mengintegrasikan berbagai model AI tingkat lanjut dan pemahaman konteks proyek yang mendalam. Proses setup dimulai dengan membuka proyek Next.js yang telah dibuat di Cursor AI Pro.
-
-
-
-Gambar 4.5: Interface Cursor AI Pro [Screenshot Cursor AI Pro interface dengan project terbuka]
-
-Konfigurasi Cursor AI Pro disetel untuk mengoptimalkan pengalaman pengembangan dengan AI assistance. Mode yang digunakan adalah auto mode, di mana platform secara otomatis memilih model AI yang paling sesuai berdasarkan kompleksitas task yang diberikan. Model-model yang tersedia dalam mode auto mencakup Claude Sonnet 4.5, Opus 4.5, GPT-5.1 dengan berbagai variannya (Codex Max, Codex Mini), Gemini 3 Pro, Grok Code, dan Composer 1.
-Pemilihan model ini dilakukan secara dinamis oleh sistem berdasarkan analisis prompt dan konteks proyek.
-
-
-Gambar 4.6: Cursor AI Settings - Model Selection [Screenshot settings Cursor AI showing available models]
-
-Fitur codebase indexing diaktifkan untuk memungkinkan AI memahami keseluruhan struktur proyek, termasuk file-file konfigurasi, struktur folder, dan dependencies yang terinstal. Composer Mode juga diaktifkan untuk mendukung pemahaman konteks multi-file, yang memungkinkan AI memberikan saran kode yang lebih kontekstual dan terintegrasi dengan baik dalam struktur proyek.
-Pengaturan auto-save dan code suggestions juga diaktifkan untuk meningkatkan efisiensi workflow pengembangan.
-
-4.2.4 Setup Cursor AI Pro
-
-Setelah semua setup selesai, dilakukan verifikasi untuk memastikan environment berjalan dengan baik dan siap digunakan untuk implementasi komponen penelitian. Verifikasi dimulai dengan menjalankan development server menggunakan command npm run dev.
-
-
-
-
-Gambar 4.7: Development Server Running [Screenshot terminal: npm run dev dan output "Ready in Xs"]
-
-Development server berhasil berjalan tanpa error dan dapat diakses melalui http://localhost:3000. Proses kompilasi TypeScript berjalan dengan sukses tanpa type errors. Tailwind CSS juga berhasil di-compile dengan benar, terlihat dari styling yang muncul pada halaman default Next.js. Hot reload berfungsi dengan baik, di mana setiap perubahan pada file langsung ter-reflect pada browser tanpa perlu refresh manual.
-
-
-
-Gambar 4.8: Browser Preview - Default Next.js Page [Screenshot browser showing default Next.js landing page di localhost:3000]
-
-Halaman default Next.js muncul dengan sempurna di browser, menampilkan konten bawaan dengan styling Tailwind CSS yang sudah terimplementasi. Hal ini mengkonfirmasi bahwa seluruh stack teknologi berfungsi dengan baik dan terintegrasi dengan benar. Responsivitas halaman juga berfungsi dengan baik saat diuji pada berbagai ukuran layar. TypeScript compilation berjalan tanpa warning atau error, yang menunjukkan konfigurasi tsconfig sudah optimal. Console browser tidak menampilkan error apapun, mengindikasikan bahwa tidak ada masalah pada client-side rendering.
-
-Dengan selesainya tahap verifikasi environment, proyek siap memasuki tahap implementasi komponen menggunakan berbagai variasi prompt yang telah dirancang.
-
-4.3 Hasil Pengujian Komponen Property Card
-4.3.1 Eksperimen 1 - Prompt Sederhana
-
-Prompt yang digunakan:
-
-"Buatkan komponen card untuk listing properti dengan ukuran " Proses Eksperimen:
-Prompt sederhana dijalankan pada Cursor AI Pro dengan Mode Auto pada sesi baru (new chat). Sistem secara otomatis memilih model Claude Sonnet 4.5 untuk menangani request ini.
-
-Pada iterasi pertama, Cursor AI menghasilkan kode komponen card dengan struktur dasar menggunakan HTML dan inline style tanpa menggunakan Tailwind CSS. Kode tersebut gagal dikompilasi karena terdapat TypeScript error pada props interface yang tidak terdefinisi. Oleh karena itu dilakukan iterasi kedua dengan meminta perbaikan error tersebut.
-
-Pada iterasi kedua, Cursor AI memperbaiki TypeScript error namun styling masih menggunakan inline style. Komponen berhasil dirender di browser tanpa error, sehingga eksperimen dihentikan pada iterasi ini.
-
-DAFTAR PUSTAKA
-[1] Sauvola, J., Tarkoma, S., Klemettinen, M., Riekki, J., & Doermann, D. (2024). Future of software development with generative AI. Automated Software Engineering, 31(26). https://doi.org/10.1007/s10515-024-00426-z
-[2] Hosseini, R., & Ryden, P. (2024). Generative AI in frontend web development: A comparison between AI as a tool and as a sole programmer-Evaluation of ChatGPT's role within frontend development (Bachelor's thesis). KTH Royal Institute of Technology. https://urn.kb.se/resolve?urn=urn:nbn:se:kth:diva-350910
-[3] Si, C., Zhang, Y., Li, R., Yang, Z., Liu, R., & Yang, D. (2025). Design2Code: Benchmarking multimodal code generation for automated front-end engineering. arXiv. https://arxiv.org/abs/2403.03163
-[4] Zhang, Y., Hui, L., Miao, X., & Zhu, M. (2024). frontend Diffusion: Intent-based user interfaces through abstract-to-detailed task transitions. arXiv. https://arxiv.org/abs/2408.00778
-[5] Jiang, X., Zhou, Y., Li, Z., Zhao, Y., & Fu, J. (2024). UICoder: Finetuning large language models to generate UI code with feedback. arXiv. https://arxiv.org/abs/2406.07739
-[6] H. Jiang, ... (2024) CursorCore: Assist Programming through Aligning Anything (arXiv)
-[7] Paternoster, N., Giardino, C., Unterkalmsteiner, M., Gorschek, T., & Abrahamsson, P. (2014).
-Information and Software Technology Software Development in Startups: A Systematic Mapping Study
-[8] Sandelowski, M. (2001). Real qualitative researchers do not count: The use of numbers in qualitative research. Research in Nursing & Health, 24(3). https://doi.org/10.1002/nur.10021
-[9] Chen, M., Tworek, J., Jun, H., Yuan, Q., Pinto, H. P. d. O., Kaplan, J., ... & Zaremba,
-W. (2021). Evaluating large language models trained on code. arXiv preprint arXiv:2107.03374. https://doi.org/10.48550/arXiv.2107.03374
-[10] Vaithilingam, P., Zhang, T., & Glassman, E. L. (2022). Expectation vs. experience: Evaluating the usability of code generation tools powered by large language models. CHI Conference on Human Factors in Computing Systems, Article 332. https://doi.org/10.1145/3491102.3502046
-[11] J. White, Q. Fu, S. Hays, M. Sandborn, C. Olea, H. Gilbert, A. Elnashar, J. Spencer-Smith, and D. C. Schmidt, "A Prompt Pattern Catalog to Enhance Prompt
-
-Engineering with ChatGPT," arXiv preprint arXiv:2302.11382, 2023
-
-LAMPIRAN
-
-Figma hasil Desain tim UI/UX Seerumah: SeeRumah - Figma
-BRD - SeeRumah Ted Estate - Google Docs Analisis Desain Color RGB: https://www.color-hex.com/
-
-
-
-
-
-
