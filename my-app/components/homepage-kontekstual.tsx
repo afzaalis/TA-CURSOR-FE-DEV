@@ -50,7 +50,7 @@ function SectionHeader({ title }: { title: string }) {
   return (
     <div className="mb-6 flex items-center justify-between">
       <h2
-        className={`${poppins.className} text-[25px] font-semibold leading-tight text-[#555555]`}
+        className={`${poppins.className} text-[25px] font-semibold uppercase leading-tight tracking-[0.06em] text-[#555555]`}
       >
         {title}
       </h2>
