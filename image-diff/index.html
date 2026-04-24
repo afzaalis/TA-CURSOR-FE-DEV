@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image Diff Tool · resemble.js</title>
+  <meta name="description" content="Compare visual differences between two UI screenshots using resemble.js" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="bg-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <div class="app">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8" />
+          <path d="m21 21-4.35-4.35" />
+          <path d="M11 8v6M8 11h6" />
+        </svg>
+      </div>
+      <div>
+        <h1 class="header-title">Image Diff Tool</h1>
+        <p class="header-sub">Powered by <span class="badge">resemble.js</span></p>
+      </div>
+    </header>
+
+    <!-- Upload Section -->
+    <section class="upload-grid">
+      <!-- Image A -->
+      <div class="upload-card" id="drop-a">
+        <input type="file" id="input-a" accept="image/*" hidden />
+        <div class="upload-placeholder" id="placeholder-a" onclick="document.getElementById('input-a').click()">
+          <div class="upload-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <circle cx="8.5" cy="8.5" r="1.5" />
+              <polyline points="21 15 16 10 5 21" />
+            </svg>
+          </div>
+          <p class="upload-label">Image A</p>
+          <p class="upload-hint">Click or drag & drop</p>
+        </div>
+        <div class="preview-wrapper hidden" id="preview-wrapper-a">
+          <img id="preview-a" class="preview-img" alt="Image A" />
+          <button class="remove-btn" onclick="removeImage('a')" title="Remove">✕</button>
+          <span class="image-tag tag-a">A</span>
+        </div>
+      </div>
+
+      <!-- Swap Button -->
+      <div class="swap-col">
+        <button class="swap-btn" id="swap-btn" onclick="swapImages()" title="Swap images">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 16V4m0 0L3 8m4-4 4 4" />
+            <path d="M17 8v12m0 0 4-4m-4 4-4-4" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Image B -->
+      <div class="upload-card" id="drop-b">
+        <input type="file" id="input-b" accept="image/*" hidden />
+        <div class="upload-placeholder" id="placeholder-b" onclick="document.getElementById('input-b').click()">
+          <div class="upload-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <circle cx="8.5" cy="8.5" r="1.5" />
+              <polyline points="21 15 16 10 5 21" />
+            </svg>
+          </div>
+          <p class="upload-label">Image B</p>
+          <p class="upload-hint">Click or drag & drop</p>
+        </div>
+        <div class="preview-wrapper hidden" id="preview-wrapper-b">
+          <img id="preview-b" class="preview-img" alt="Image B" />
+          <button class="remove-btn" onclick="removeImage('b')" title="Remove">✕</button>
+          <span class="image-tag tag-b">B</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Settings -->
+    <section class="settings-card">
+      <h2 class="settings-title">Comparison Settings</h2>
+      <div class="settings-grid">
+
+        <div class="setting-item">
+          <label for="ignore-mode">Ignore Mode</label>
+          <select id="ignore-mode">
+            <option value="nothing">Nothing (strict)</option>
+            <option value="less" selected>Less</option>
+            <option value="antialiasing">Anti-aliasing</option>
+            <option value="colors">Colors</option>
+            <option value="alpha">Alpha</option>
+          </select>
+        </div>
+
+        <div class="setting-item">
+          <label for="diff-color">Diff Highlight Color</label>
+          <div class="color-row">
+            <input type="color" id="diff-color" value="#ff2d55" />
+            <span id="diff-color-label" class="color-hex">#ff2d55</span>
+          </div>
+        </div>
+
+        <div class="setting-item">
+          <label>
+            <input type="checkbox" id="ignore-colors" />
+            Ignore Colors
+          </label>
+          <label>
+            <input type="checkbox" id="ignore-antialiasing" />
+            Ignore Anti-aliasing
+          </label>
+        </div>
+
+        <div class="setting-item">
+          <label>Output Scale: <strong id="scale-val">1.0×</strong></label>
+          <input type="range" id="output-scale" min="0.25" max="2" step="0.05" value="1" />
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Compare Button -->
+    <div class="compare-row">
+      <button class="compare-btn" id="compare-btn" onclick="runComparison()" disabled>
+        <span class="compare-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+          </svg>
+        </span>
+        Run Comparison
+      </button>
+    </div>
+
+    <!-- Loader -->
+    <div class="loader hidden" id="loader">
+      <div class="spinner"></div>
+      <p>Analyzing images…</p>
+    </div>
+
+    <!-- Results -->
+    <section class="results hidden" id="results">
+      <div class="results-header">
+        <h2>Comparison Result</h2>
+        <button class="download-btn" id="download-btn" onclick="downloadDiff()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+            <polyline points="7 10 12 15 17 10" />
+            <line x1="12" y1="15" x2="12" y2="3" />
+          </svg>
+          Download Diff
+        </button>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="stat-card stat-card--similarity" id="stat-similarity">
+          <div class="stat-value" id="val-similarity">—</div>
+          <div class="stat-label">Similarity %</div>
+          <div class="similarity-bar-wrap">
+            <div class="similarity-bar" id="similarity-bar" style="width:0%"></div>
+          </div>
+        </div>
+        <div class="stat-card" id="stat-mismatch">
+          <div class="stat-value" id="val-mismatch">—</div>
+          <div class="stat-label">Mismatch %</div>
+        </div>
+        <div class="stat-card" id="stat-pixels">
+          <div class="stat-value" id="val-pixels">—</div>
+          <div class="stat-label">Different Pixels</div>
+        </div>
+        <div class="stat-card" id="stat-dimensions">
+          <div class="stat-value" id="val-dimensions">—</div>
+          <div class="stat-label">Dimensions</div>
+        </div>
+        <div class="stat-card" id="stat-same">
+          <div class="stat-value" id="val-same">—</div>
+          <div class="stat-label">Same Color</div>
+        </div>
+      </div>
+
+      <!-- Diff image + slider -->
+      <div class="diff-view">
+        <div class="view-tabs">
+          <button class="view-tab active" data-tab="diff" onclick="switchTab('diff')">Diff Overlay</button>
+          <button class="view-tab" data-tab="slider" onclick="switchTab('slider')">A/B Slider</button>
+          <button class="view-tab" data-tab="side" onclick="switchTab('side')">Side-by-Side</button>
+        </div>
+
+        <!-- Diff tab -->
+        <div class="tab-panel active" id="tab-diff">
+          <div class="diff-canvas-wrap">
+            <canvas id="diff-canvas"></canvas>
+          </div>
+        </div>
+
+        <!-- Slider tab -->
+        <div class="tab-panel" id="tab-slider">
+          <div class="slider-container" id="slider-container">
+            <img id="slider-img-a" class="slider-img slider-img-back" alt="Image A" />
+            <div class="slider-clip" id="slider-clip">
+              <img id="slider-img-b" class="slider-img" alt="Image B" />
+            </div>
+            <div class="slider-handle" id="slider-handle">
+              <div class="handle-line"></div>
+              <div class="handle-circle">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="15 18 9 12 15 6" />
+                  <polyline points="9 18 3 12 9 6" />
+                </svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  style="transform:scaleX(-1)">
+                  <polyline points="15 18 9 12 15 6" />
+                  <polyline points="9 18 3 12 9 6" />
+                </svg>
+              </div>
+            </div>
+            <span class="slider-label label-left">A</span>
+            <span class="slider-label label-right">B</span>
+          </div>
+        </div>
+
+        <!-- Side-by-side tab -->
+        <div class="tab-panel" id="tab-side">
+          <div class="side-grid">
+            <div class="side-cell">
+              <span class="side-tag">A</span>
+              <img id="side-img-a" class="side-img" alt="Image A" />
+            </div>
+            <div class="side-cell">
+              <span class="side-tag">B</span>
+              <img id="side-img-b" class="side-img" alt="Image B" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- resemble.js from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/resemblejs/resemble.js"></script>
+  <script src="main.js"></script>
+</body>
+
+</html>

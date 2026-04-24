@@ -22,7 +22,14 @@ const Footer: React.FC = () => {
           {/* Left Section - Logo & Contact */}
           <div className="lg:col-span-2">
             {/* Logo */}
-            {/* <Image src="/images/logo.png" alt="seerumah" width={200} height={200} /> */}
+            <Image 
+              src="/images/logo.png" 
+              alt="seerumah" 
+              width={320} 
+              height={80} 
+              className="w-[200px] h-auto object-contain"
+              unoptimized
+            />
             {/* Address/Description */}
             <p className="text-sm text-gray-700 mb-6 leading-relaxe mt-4">
               Jalan Telekomunikasi, Terusan Buah Batu,
