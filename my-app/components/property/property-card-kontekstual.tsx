@@ -191,7 +191,7 @@ export default function PropertyCardKontekstual(
           aria-label="Tambah ke wishlist"
           className="absolute right-2 top-2 flex h-6 w-6 items-center justify-center rounded-full bg-transparent text-white"
         >
-          <FaRegHeart className="h-3.5 w-3.5 drop-shadow-sm" />
+          <FaRegHeart className="h-6 w-6 drop-shadow-sm" />
         </button>
 
         <div

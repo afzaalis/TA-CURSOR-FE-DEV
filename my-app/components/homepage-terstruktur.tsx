@@ -39,10 +39,7 @@ const cards: PropertyData[] = Array.from({ length: 6 }, (_, i) => ({
     name: "Agen Demo",
     photo: "/images/logo.png",
   },
-  imageSrc:
-    i % 2 === 0
-      ? "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1000&q=80"
-      : "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1000&q=80",
+  imageSrc: "/images/dummyrumahasli.png",
   installmentBadges: ["8,2 Jt/bln", "5 thn"],
 }));
 

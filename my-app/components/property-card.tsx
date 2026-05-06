@@ -3,7 +3,7 @@ import { FaRegHeart, FaMapMarkerAlt, FaBed, FaBath } from "react-icons/fa";
 import { HiArrowsExpand } from "react-icons/hi";
 
 export type PropertyCardProps = {
-  imageSrc: string;
+  imageSrc?: string;
   imageAlt?: string;
   priceLabel: string;
   installmentBadges?: string[];
@@ -18,7 +18,7 @@ export type PropertyCardProps = {
 const defaultBadges = ["X Jt/bln (X th)", "X Jt/bln (X th)"];
 
 export default function PropertyCard({
-  imageSrc,
+  imageSrc = "/images/dummyrumahasli.png",
   imageAlt = "Foto properti",
   priceLabel,
   installmentBadges = defaultBadges,

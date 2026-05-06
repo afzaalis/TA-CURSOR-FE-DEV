@@ -92,7 +92,7 @@ export default function NavbarTerstruktur() {
       className={`${poppins.className} sticky top-0 z-50 w-full border-b border-[#E5E7EB] bg-white shadow-[0px_1px_3px_rgba(0,0,0,0.08)]`}
     >
       <div ref={menuRootRef} className="w-full">
-        <div className="mx-auto flex max-w-[1280px] items-center justify-between gap-4 px-5 py-4 sm:px-6 sm:py-4 md:px-8 md:py-5 lg:px-10">
+        <div className="mx-auto flex max-w-[1280px] items-center justify-between gap-4 py-4 pl-[35px] pr-[43px] sm:py-4 md:py-5">
           <Link
             href="/"
             className={`${linkBase} shrink-0`}

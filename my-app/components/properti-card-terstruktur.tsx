@@ -69,7 +69,7 @@ export default function PropertiCardTerstruktur({
           aria-label="Tambah ke favorit"
           className="absolute right-2 top-2 flex h-6 w-6 items-center justify-center rounded-full bg-transparent text-white"
         >
-          <FaRegHeart className="h-3.5 w-3.5" />
+          <FaRegHeart className="h-6 w-6" />
         </button>
 
         <div
