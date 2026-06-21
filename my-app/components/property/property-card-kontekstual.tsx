@@ -8,120 +8,29 @@ import {
 } from "react-icons/fa";
 import { HiArrowsExpand } from "react-icons/hi";
 
+import type { PropertyCardKontekstualProps } from "./property-card-kontekstual.types";
+import { resolveCardFields } from "./property-card-kontekstual.utils";
+import { PropertyCardKontekstualSkeleton } from "./property-card-kontekstual-skeleton";
+
+// Re-export types & utils agar semua existing imports tetap valid
+export type {
+  PropertyStatus,
+  PropertyLocation,
+  PropertyFacilities,
+  PropertyAgent,
+  PropertyData,
+  PropertyCardKontekstualProps,
+} from "./property-card-kontekstual.types";
+export {
+  formatPropertyPriceIdr,
+  formatPropertyPriceCompact,
+} from "./property-card-kontekstual.utils";
+export { PropertyCardKontekstualSkeleton } from "./property-card-kontekstual-skeleton";
+
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
-
-const defaultInstallmentBadges = ["X Jt/bln (X th)", "X Jt/bln (X th)"];
-
-export type PropertyStatus = "Primary" | "Secondary";
-
-export interface PropertyLocation {
-  city: string;
-  district: string;
-}
-
-export interface PropertyFacilities {
-  bed: number;
-  bath: number;
-  landArea: string;
-  buildingArea: string;
-}
-
-export interface PropertyAgent {
-  name: string;
-  photo: string;
-}
-
-export interface PropertyData {
-  id: string;
-  isPromoted: boolean;
-  price: number;
-  status: PropertyStatus;
-  title: string;
-  location: PropertyLocation;
-  facilities: PropertyFacilities;
-  agent: PropertyAgent;
-  imageSrc: string;
-  installmentBadges?: string[];
-}
-
-export interface PropertyCardKontekstualProps {
-  data?: PropertyData;
-  imageSrc?: string;
-  imageAlt?: string;
-  priceLabel?: string;
-  installmentBadges?: string[];
-  totalImages?: number;
-  activeImageIndex?: number;
-  title?: string;
-  location?: string;
-  landArea?: string;
-  buildingArea?: string;
-  bedrooms?: string;
-  bathrooms?: string;
-  isLoading?: boolean;
-}
-
-export function formatPropertyPriceIdr(value: number): string {
-  return new Intl.NumberFormat("id-ID", {
-    style: "currency",
-    currency: "IDR",
-    maximumFractionDigits: 0,
-  }).format(value);
-}
-
-function resolveCardFields(
-  props: PropertyCardKontekstualProps,
-): {
-  imageSrc: string;
-  imageAlt: string;
-  priceLabel: string;
-  installmentBadges: string[];
-  title: string;
-  locationLine: string;
-  landArea: string;
-  buildingArea: string;
-  bedrooms: string;
-  bathrooms: string;
-} {
-  const { data } = props;
-  const installmentBadges =
-    props.installmentBadges ??
-    data?.installmentBadges ??
-    defaultInstallmentBadges;
-
-  if (data) {
-    const locationLine = `${data.location.city}, ${data.location.district}`;
-    return {
-      imageSrc: props.imageSrc ?? data.imageSrc,
-      imageAlt: props.imageAlt ?? data.title,
-      priceLabel:
-        props.priceLabel ?? formatPropertyPriceIdr(data.price),
-      installmentBadges,
-      title: props.title ?? data.title,
-      locationLine: props.location ?? locationLine,
-      landArea: props.landArea ?? data.facilities.landArea,
-      buildingArea: props.buildingArea ?? data.facilities.buildingArea,
-      bedrooms: props.bedrooms ?? String(data.facilities.bed),
-      bathrooms: props.bathrooms ?? String(data.facilities.bath),
-    };
-  }
-
-  return {
-    imageSrc: props.imageSrc ?? "",
-    imageAlt: props.imageAlt ?? "Foto properti",
-    priceLabel: props.priceLabel ?? "",
-    installmentBadges,
-    title: props.title ?? "",
-    locationLine: props.location ?? "",
-    landArea: props.landArea ?? "",
-    buildingArea: props.buildingArea ?? "",
-    bedrooms: props.bedrooms ?? "",
-    bathrooms: props.bathrooms ?? "",
-  };
-}
 
 export default function PropertyCardKontekstual(
   props: PropertyCardKontekstualProps,
@@ -163,7 +72,7 @@ export default function PropertyCardKontekstual(
           aria-label="Tambah ke wishlist"
           className="absolute right-2 top-2 flex h-6 w-6 items-center justify-center rounded-full bg-transparent text-white"
         >
-          <FaRegHeart className="h-3.5 w-3.5 drop-shadow-sm" />
+          <FaRegHeart className="h-6 w-6 drop-shadow-sm" />
         </button>
 
         <div
@@ -201,15 +110,7 @@ export default function PropertyCardKontekstual(
             </div>
           </div>
 
-          <h3
-            className="mb-2 text-[10px] font-semibold italic leading-[1.25] text-[#555555]"
-            style={{
-              display: "-webkit-box",
-              WebkitLineClamp: 2,
-              WebkitBoxOrient: "vertical",
-              overflow: "hidden",
-            }}
-          >
+          <h3 className="mb-2 line-clamp-2 text-[10px] font-semibold italic leading-[1.25] text-[#555555]">
             {fields.title}
           </h3>
 
@@ -245,36 +146,5 @@ export default function PropertyCardKontekstual(
         </div>
       </div>
     </article>
-  );
-}
-
-export function PropertyCardKontekstualSkeleton() {
-  return (
-    <div
-      className={`${poppins.className} h-[241px] w-full max-w-[320px] animate-pulse overflow-hidden rounded-[10px] bg-white shadow-[0_1px_3px_rgba(0,0,0,0.10)] sm:w-[207px] sm:max-w-none`}
-      role="status"
-      aria-label="Memuat kartu properti"
-    >
-      <div className="h-[131px] w-full rounded-t-[10px] bg-zinc-200" />
-      <div className="flex h-[110px] flex-col justify-between px-4 pt-3">
-        <div className="space-y-2">
-          <div className="h-4 w-28 rounded bg-zinc-200" />
-          <div className="flex gap-1">
-            <div className="h-3 w-16 rounded-[7px] bg-zinc-200" />
-            <div className="h-3 w-16 rounded-[7px] bg-zinc-200" />
-          </div>
-          <div className="h-3 w-full rounded bg-zinc-200" />
-          <div className="h-2 w-3/4 rounded bg-zinc-200" />
-        </div>
-        <div className="border-t border-[#E6E9EF] py-2">
-          <div className="flex justify-between">
-            <div className="h-2 w-10 rounded bg-zinc-200" />
-            <div className="h-2 w-10 rounded bg-zinc-200" />
-            <div className="h-2 w-6 rounded bg-zinc-200" />
-            <div className="h-2 w-6 rounded bg-zinc-200" />
-          </div>
-        </div>
-      </div>
-    </div>
   );
 }
